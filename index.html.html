@@ -1,0 +1,928 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>LICA – Customer Intelligence</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff8f0;color:#0a1628;min-height:100vh;font-size:14px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+:root{--navy:#0a1628;--accent:#1e3a6e;--orange:#d96a00;--green:#15803d;--amber:#92400e;--gray:#5a6a8a;--gray2:#8898aa;--purple:#5b21b6;--bdr:rgba(10,22,40,.12);--bdr2:rgba(10,22,40,.2);--sh:0 1px 8px rgba(10,22,40,.08),0 2px 16px rgba(10,22,40,.06);--sh2:0 4px 24px rgba(10,22,40,.14);--ga:linear-gradient(135deg,#1e3a6e,#2b4f8c);--gg:linear-gradient(135deg,#0f6b32,#15803d);--gam:linear-gradient(135deg,#7c2d12,#b45309)}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(145deg,#fff3e0 0%,#fff8f0 45%,#ffefd5 100%)}
+.bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,22,40,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(10,22,40,.03) 1px,transparent 1px);background-size:40px 40px}
+.topbar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1e3a6e,#e8750a,#f59e0b,#1e3a6e);z-index:600}
+.wrap{position:relative;z-index:1}
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:10px;padding:0 22px;height:62px;background:rgba(255,248,240,.96);backdrop-filter:blur(20px);border-bottom:1.5px solid var(--bdr);box-shadow:0 1px 12px rgba(10,22,40,.07)}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-btn{position:relative;width:38px;height:38px;border-radius:10px;border:1.5px solid var(--bdr2);background:#ffefd5;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;flex-shrink:0;transition:border-color .2s}
+.logo-btn:hover{border-color:var(--orange)}
+.logo-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.logo-btn img{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.logo-btn img.show{display:block}
+.logo-hint{position:absolute;inset:0;background:rgba(10,22,40,.55);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;opacity:0;transition:opacity .18s}
+.logo-btn:hover .logo-hint{opacity:1}
+.logo-init{font-size:17px;font-weight:800;color:var(--orange)}
+.brand-name{font-size:15px;font-weight:800;letter-spacing:-.3px;white-space:nowrap}
+.brand-name b{color:var(--orange);font-weight:900}
+.tabs{display:flex;gap:2px;background:rgba(10,22,40,.055);border-radius:9px;padding:3px;border:1.5px solid var(--bdr)}
+.tab{padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;color:var(--gray);border:none;background:none;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:all .18s}
+.tab.on{background:var(--ga);color:#fff;box-shadow:0 2px 10px rgba(30,58,110,.28);font-weight:700}
+.tab.on.tk{background:var(--gam)}
+.tab:hover:not(.on){background:rgba(10,22,40,.07);color:var(--navy)}
+.tbadge{font-size:10px;font-weight:700;padding:1px 6px;border-radius:12px;background:rgba(185,28,28,.13);color:#b91c1c;border:1px solid rgba(185,28,28,.24)}
+.tab.on .tbadge{background:rgba(255,255,255,.25);color:#fff;border-color:rgba(255,255,255,.3)}
+.nav-r{display:flex;align-items:center;gap:6px;flex-shrink:0;margin-left:auto}
+.dpill{display:flex;align-items:center;gap:8px;padding:5px 11px;border-radius:16px;background:rgba(255,255,255,.9);border:1.5px solid var(--bdr2);white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gray2);flex-shrink:0;transition:all .35s}
+.dot.on{background:#15803d;box-shadow:0 0 6px rgba(21,128,61,.6)}
+.dot.sv{background:#e8750a;animation:dp .8s infinite}
+@keyframes dp{0%,100%{opacity:1}50%{opacity:.3}}
+.dm{font-size:12px;font-weight:700;color:var(--navy)}
+.ds{font-size:10px;color:var(--gray);margin-top:1px}
+.kb-pill{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:16px;background:rgba(91,33,182,.08);border:1.5px solid rgba(91,33,182,.22);white-space:nowrap;font-size:11px;font-weight:600;color:#5b21b6}
+.kb-dot{width:6px;height:6px;border-radius:50%;background:var(--gray2);flex-shrink:0}
+.kb-dot.on{background:#7c3aed;box-shadow:0 0 5px rgba(124,58,237,.6)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:8px;background:rgba(255,255,255,.9);border:1.5px solid var(--bdr2);color:var(--navy);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .18s}
+.btn:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
+.btn.imp:hover{background:var(--ga);color:#fff;border-color:transparent}
+.btn.sav:hover{background:var(--gg);color:#fff;border-color:transparent}
+.btn.clr:hover{background:linear-gradient(135deg,#b91c1c,#dc2626);color:#fff;border-color:transparent}
+.page{display:none}.page.on{display:block}
+.hero{display:flex;flex-direction:column;align-items:center;padding:52px 20px 56px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(30,58,110,.08);border:1.5px solid rgba(30,58,110,.16);border-radius:20px;padding:4px 14px;margin-bottom:18px;font-size:11.5px;font-weight:700;color:var(--accent)}
+.hero h1{font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:30px;text-align:center}
+.hero h1 b{color:var(--orange)}
+.sw{width:100%;max-width:720px;position:relative}
+.sbox{position:relative;background:rgba(255,255,255,.97);border:1.5px solid var(--bdr2);border-radius:12px;box-shadow:var(--sh);transition:all .2s}
+.sw:focus-within .sbox{border-color:var(--accent);box-shadow:0 0 0 3px rgba(30,58,110,.1),var(--sh)}
+.sinp{width:100%;padding:14px 48px;font-size:15px;font-weight:600;background:none;border:none;outline:none;color:var(--navy);font-family:inherit;border-radius:12px}
+.sinp::placeholder{color:var(--gray2);font-weight:400}
+.sico{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--gray2);pointer-events:none}
+.sw:focus-within .sico{color:var(--accent)}
+.sclr{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:23px;height:23px;border-radius:50%;border:none;background:rgba(10,22,40,.09);color:var(--gray);font-size:11px;cursor:pointer;display:none;align-items:center;justify-content:center;font-weight:700}
+.sclr:hover{background:#b91c1c;color:#fff}
+.shint{margin-top:10px;font-size:12px;font-weight:500;color:var(--gray);text-align:center;display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap}
+.hchip{padding:2px 9px;border-radius:12px;font-size:11.5px;font-weight:600;background:rgba(30,58,110,.07);border:1.5px solid rgba(30,58,110,.14);color:var(--accent)}
+.drop{position:absolute;top:calc(100% + 6px);left:0;right:0;background:rgba(255,252,248,.99);border:1.5px solid var(--bdr2);border-radius:11px;box-shadow:0 12px 40px rgba(10,22,40,.13);z-index:300;overflow:hidden;display:none;max-height:280px;overflow-y:auto}
+.ditem{padding:9px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(10,22,40,.06);transition:background .1s}
+.ditem:last-child{border-bottom:none}
+.ditem:hover{background:rgba(30,58,110,.06)}
+.dcode{font-size:11px;font-weight:700;color:var(--accent);font-family:'Inter',monospace;border:1.5px solid rgba(30,58,110,.18);padding:2px 7px;border-radius:5px;background:rgba(30,58,110,.06);flex-shrink:0}
+.dname{font-size:13px;font-weight:500;color:var(--navy)}
+.rarea{width:100%;max-width:1040px;margin-top:24px}
+.cw{display:flex;flex-direction:column;gap:12px}
+.crow{display:grid;gap:12px}
+.r3{grid-template-columns:1fr 1fr 1fr}
+.r1{grid-template-columns:1fr}
+.card{background:rgba(255,255,255,.96);border:1.5px solid var(--bdr);border-radius:12px;overflow:hidden;box-shadow:var(--sh);animation:fu .22s ease;position:relative}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.c-cu::before{background:linear-gradient(90deg,#1e3a6e,#2b4f8c)}
+.c-py::before{background:linear-gradient(90deg,#d96a00,#e8750a)}
+.c-ic::before{background:linear-gradient(90deg,#5b21b6,#7c3aed)}
+.c-st::before{background:linear-gradient(90deg,#0f6b32,#15803d)}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ch{padding:11px 15px 9px;border-bottom:1.5px solid rgba(10,22,40,.07);display:flex;align-items:center;gap:8px;background:rgba(10,22,40,.016)}
+.cico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.c-cu .cico{background:rgba(30,58,110,.1)}
+.c-py .cico{background:rgba(217,106,0,.1)}
+.c-ic .cico{background:rgba(91,33,182,.1)}
+.c-st .cico{background:rgba(15,107,50,.1)}
+.ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray)}
+.cb{padding:13px 15px}
+.cname{font-size:17px;font-weight:800;margin-bottom:9px;line-height:1.2;letter-spacing:-.3px}
+.cmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.codetag{font-size:11.5px;font-family:'Inter',monospace;font-weight:700;color:var(--accent);background:rgba(30,58,110,.08);border:1.5px solid rgba(30,58,110,.16);padding:2px 9px;border-radius:5px}
+.dctag{display:inline-flex;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:12px}
+.dc-d{background:rgba(30,58,110,.08);border:1.5px solid rgba(30,58,110,.18);color:#1e3a6e}
+.dc-a{background:rgba(91,33,182,.08);border:1.5px solid rgba(91,33,182,.18);color:#5b21b6}
+.dc-e{background:rgba(15,107,50,.08);border:1.5px solid rgba(15,107,50,.18);color:#0f6b32}
+.dc-u{background:rgba(90,106,138,.07);border:1.5px solid rgba(90,106,138,.14);color:var(--gray)}
+.scg-badge{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:12px;background:rgba(217,106,0,.1);border:1.5px solid rgba(217,106,0,.3);color:#b45309}
+.plist{display:flex;flex-direction:column;gap:6px}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(217,106,0,.045);border-radius:7px;border:1.5px solid rgba(217,106,0,.11)}
+.pcode{font-size:14px;font-weight:700;font-family:'Inter',monospace}
+.ptag{font-size:10px;font-weight:700;padding:2px 9px;border-radius:12px}
+.pt-p{background:rgba(30,58,110,.09);color:var(--accent);border:1.5px solid rgba(30,58,110,.18)}
+.pt-s{background:rgba(90,106,138,.09);color:var(--gray);border:1.5px solid rgba(90,106,138,.16)}
+.pt-o{background:rgba(15,107,50,.09);color:var(--green);border:1.5px solid rgba(15,107,50,.18)}
+.pt-r{background:rgba(217,106,0,.09);color:var(--orange);border:1.5px solid rgba(217,106,0,.18)}
+.ilist{display:flex;flex-direction:column;gap:6px}
+.irow{display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(91,33,182,.045);border-radius:7px;border:1.5px solid rgba(91,33,182,.11)}
+.iterm{font-size:17px;font-weight:800;color:#5b21b6}
+.itag{font-size:10px;font-weight:700;padding:2px 9px;border-radius:12px;margin-left:auto}
+.it-p{background:rgba(91,33,182,.1);color:#5b21b6;border:1.5px solid rgba(91,33,182,.2)}
+.it-s{background:rgba(90,106,138,.09);color:var(--gray);border:1.5px solid rgba(90,106,138,.16)}
+.it-o{background:rgba(15,107,50,.09);color:var(--green);border:1.5px solid rgba(15,107,50,.18)}
+.stb{background:#fff;border-radius:10px;border:1.5px solid rgba(15,107,50,.14);margin-bottom:9px;overflow:hidden}
+.stb:last-child{margin-bottom:0}
+.stloc{background:rgba(15,107,50,.04);border-bottom:1.5px solid rgba(15,107,50,.11);padding:9px 13px;display:flex;align-items:flex-start;gap:8px}
+.stn{width:21px;height:21px;border-radius:6px;background:rgba(15,107,50,.15);color:var(--green);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.stco{font-size:10.5px;font-family:'Inter',monospace;font-weight:700;color:var(--green)}
+.stnm{font-size:13px;font-weight:700;margin-top:1px}
+.stad{font-size:11px;color:var(--gray);margin-top:2px;line-height:1.5;font-weight:400}
+.st2c{display:flex}
+.stcol{flex:1;padding:10px 13px}
+.stcol:first-child{border-right:1.5px solid rgba(15,107,50,.09)}
+.clbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gray);margin-bottom:7px}
+.sess{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:14px;font-size:12px;font-weight:600}
+.s-biz{background:rgba(21,128,61,.09);border:1.5px solid rgba(21,128,61,.2);color:#166534}
+.s-am{background:rgba(217,106,0,.09);border:1.5px solid rgba(217,106,0,.2);color:#7c3800}
+.s-pm{background:rgba(185,28,28,.07);border:1.5px solid rgba(185,28,28,.18);color:#991b1b}
+.s-ev{background:rgba(91,33,182,.09);border:1.5px solid rgba(91,33,182,.2);color:#4c1d95}
+.pname{font-size:13px;font-weight:700}
+.pphone{font-size:12px;font-family:'Inter',monospace;font-weight:600;color:var(--accent);margin-top:3px}
+.noinfo{font-size:12px;color:var(--gray2);font-style:italic}
+.condblk{border-top:1.5px solid rgba(10,22,40,.08)}
+.truck-section{background:linear-gradient(135deg,rgba(124,45,18,.055),rgba(180,83,9,.035));padding:10px 13px}
+.truck-section-hd{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.truck-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#7c2d12,#b45309);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;letter-spacing:.4px;text-transform:uppercase}
+.truck-item{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;background:rgba(255,255,255,.75);border:1.5px solid rgba(180,83,9,.24);border-radius:8px;margin-bottom:5px}
+.truck-item:last-child{margin-bottom:0}
+.truck-item-txt{font-size:12px;font-weight:600;color:#7c2d12;line-height:1.5}
+.spec-section{background:linear-gradient(135deg,rgba(30,58,110,.05),rgba(30,58,110,.03));padding:10px 13px}
+.spec-section-hd{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.spec-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#1e3a6e,#2b4f8c);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;letter-spacing:.4px;text-transform:uppercase}
+.spec-item{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;background:rgba(255,255,255,.75);border:1.5px solid rgba(30,58,110,.2);border-radius:8px;margin-bottom:5px}
+.spec-item:last-child{margin-bottom:0}
+.spec-item-txt{font-size:12px;font-weight:600;color:#1a2b4a;line-height:1.5}
+.mbox{background:rgba(255,255,255,.96);border:1.5px solid var(--bdr);border-radius:12px;overflow:hidden;animation:fu .2s ease}
+.mhd{padding:12px 15px;border-bottom:1.5px solid var(--bdr);display:flex;align-items:center;gap:8px;background:rgba(10,22,40,.016)}
+.mic{width:26px;height:26px;background:rgba(30,58,110,.09);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.mt{font-size:13.5px;font-weight:700}.ms{font-size:11.5px;color:var(--gray);font-weight:400}
+.ml{padding:10px}
+.mi{display:flex;gap:10px;padding:9px 11px;background:rgba(255,248,240,.7);border-radius:8px;border:1.5px solid var(--bdr);cursor:pointer;margin-bottom:5px;align-items:center;transition:all .14s}
+.mi:last-child{margin-bottom:0}
+.mi:hover{border-color:rgba(30,58,110,.26);transform:translateX(3px)}
+.mia{margin-left:auto;color:var(--accent);font-size:14px;font-weight:700}
+.empty-s{text-align:center;padding:40px 18px;background:rgba(255,255,255,.9);border-radius:12px;border:1.5px solid var(--bdr)}
+.ei{font-size:34px;margin-bottom:8px}.et{font-size:14px;font-weight:700;margin-bottom:4px}.es{font-size:12.5px;color:var(--gray);font-weight:400}
+.tkpg{padding:26px 26px 52px;max-width:1040px;margin:0 auto}
+.tkhd{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.tkico{width:44px;height:44px;border-radius:11px;background:var(--gam);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.tkttl{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.tksub{font-size:12.5px;color:var(--gray);margin-top:2px;font-weight:400}
+.tkst{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.tks{background:#fff;border:1.5px solid var(--bdr);border-radius:10px;padding:14px 20px;min-width:130px;text-align:center}
+.tksv{font-size:26px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:4px}
+.tksl{font-size:10px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.6px}
+.tke{text-align:center;padding:64px 18px;background:#fff;border-radius:12px;border:1.5px dashed var(--bdr2)}
+.tkei{font-size:44px;margin-bottom:12px}.tket{font-size:15px;font-weight:700;margin-bottom:6px}.tkes{font-size:12.5px;color:var(--gray);line-height:1.6;font-weight:400}
+.tbcard{background:#fff;border:1.5px solid var(--bdr);border-radius:12px;overflow:hidden;box-shadow:var(--sh);margin-bottom:12px;animation:fu .2s ease}
+.tbcard:last-child{margin-bottom:0}
+.tbch{padding:11px 15px;background:rgba(10,22,40,.02);border-bottom:1.5px solid var(--bdr);display:flex;align-items:center;gap:10px}
+.tbci{width:28px;height:28px;border-radius:8px;background:rgba(124,45,18,.09);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.tbcn{font-size:14px;font-weight:700}
+.tbcm{display:flex;align-items:center;gap:7px;margin-top:3px;flex-wrap:wrap}
+.tbcc{font-size:10.5px;font-family:'Inter',monospace;font-weight:700;color:var(--accent);background:rgba(30,58,110,.08);border:1.5px solid rgba(30,58,110,.16);padding:1px 7px;border-radius:5px}
+.tbcnt{font-size:10.5px;font-weight:600;color:var(--amber);background:rgba(146,64,14,.09);border:1px solid rgba(146,64,14,.2);padding:1px 7px;border-radius:12px}
+.tbsl{padding:10px 13px;display:flex;flex-direction:column;gap:8px}
+.tbst{background:rgba(255,252,248,.8);border:1.5px solid rgba(124,45,18,.14);border-radius:9px;overflow:hidden}
+.tbstl{padding:8px 12px;background:linear-gradient(135deg,rgba(124,45,18,.04),rgba(180,83,9,.03));border-bottom:1.5px solid rgba(124,45,18,.11);display:flex;align-items:flex-start;gap:8px}
+.tbsn{width:19px;height:19px;border-radius:5px;background:rgba(124,45,18,.15);color:var(--amber);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.tbsco{font-size:10.5px;font-family:'Inter',monospace;font-weight:700;color:#b45309}
+.tbsnm{font-size:12.5px;font-weight:700;margin-top:1px}
+.tbsad{font-size:11px;color:var(--gray);margin-top:2px;line-height:1.4;font-weight:400}
+.tbca{padding:9px 12px}
+.tbcl-hd{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+.tbcp{display:flex;align-items:flex-start;gap:7px;padding:7px 10px;background:rgba(255,255,255,.8);border:1.5px solid rgba(180,83,9,.22);border-radius:8px;margin-bottom:5px}
+.tbcp:last-child{margin-bottom:0}
+.tbct{font-size:12px;font-weight:600;color:#7c2d12;line-height:1.5}
+.aipg{display:flex;flex-direction:column;height:calc(100vh - 62px)}
+.aihd{padding:12px 22px;background:rgba(255,248,240,.97);border-bottom:1.5px solid var(--bdr);display:flex;align-items:center;gap:10px}
+.aiav{width:30px;height:30px;background:var(--ga);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.aiav img{width:100%;height:100%;object-fit:cover;display:none}
+.aiav img.show{display:block}
+.aihdt{font-size:14px;font-weight:700}
+.ai-kb-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:10px;background:rgba(91,33,182,.09);border:1px solid rgba(91,33,182,.2);font-size:10.5px;font-weight:600;color:#5b21b6;margin-left:auto}
+.ai-kb-dot{width:5px;height:5px;border-radius:50%;background:var(--gray2);flex-shrink:0}
+.ai-kb-dot.on{background:#7c3aed}
+.aibdy{display:flex;flex:1;overflow:hidden}
+/* Context bar */
+.ctx-bar{padding:5px 14px;background:rgba(30,58,110,.06);border-bottom:1px solid rgba(30,58,110,.1);font-size:10.5px;font-weight:600;color:var(--accent);display:none;align-items:center;gap:6px}
+.ctx-close{margin-left:auto;cursor:pointer;color:var(--gray2);font-weight:700;font-size:11px;padding:2px 5px;border-radius:4px;transition:all .13s}
+.ctx-close:hover{background:rgba(185,28,28,.1);color:#b91c1c}
+.chat{width:360px;flex-shrink:0;display:flex;flex-direction:column;border-right:1.5px solid var(--bdr);background:rgba(255,252,248,.8)}
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.msgs::-webkit-scrollbar{width:3px}
+.msgs::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:6px}
+.msg{display:flex;gap:7px;align-items:flex-start}
+.msg.u{flex-direction:row-reverse}
+.mav{width:24px;height:24px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;overflow:hidden}
+.msg.b .mav{background:var(--ga)}
+.msg.b .mav img{width:100%;height:100%;object-fit:cover}
+.msg.u .mav{background:rgba(30,58,110,.12)}
+.mbub{max-width:90%;padding:8px 11px;border-radius:9px;font-size:12px;line-height:1.6;font-weight:400;box-shadow:var(--sh)}
+.msg.b .mbub{background:rgba(255,255,255,.97);border:1.5px solid var(--bdr);color:#1a2b4a;border-radius:2px 9px 9px 9px}
+.msg.u .mbub{background:var(--ga);color:#fff;border-radius:9px 2px 9px 9px}
+.typing{display:flex;gap:4px;padding:8px 12px;background:rgba(255,255,255,.97);border:1.5px solid var(--bdr);border-radius:2px 9px 9px 9px;width:fit-content}
+.td{width:5px;height:5px;border-radius:50%;animation:tyd 1.4s infinite}
+.td:nth-child(1){background:#1e3a6e}.td:nth-child(2){background:#e8750a;animation-delay:.2s}.td:nth-child(3){background:#6d28d9;animation-delay:.4s}
+@keyframes tyd{0%,60%,100%{opacity:.3;transform:scale(1)}30%{opacity:1;transform:scale(1.3)}}
+.cinrow{padding:10px 12px;background:rgba(255,248,240,.97);border-top:1.5px solid var(--bdr);display:flex;gap:7px;flex-shrink:0}
+.cinp{flex:1;padding:9px 12px;background:rgba(255,255,255,.95);border:1.5px solid var(--bdr2);border-radius:8px;font-size:12.5px;font-weight:400;outline:none;font-family:inherit;transition:border-color .18s}
+.cinp:focus{border-color:var(--accent)}
+.csend{padding:9px 14px;background:var(--ga);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600}
+.csend:hover{opacity:.9}
+.rp{flex:1;overflow-y:auto;padding:18px 22px}
+.rp::-webkit-scrollbar{width:4px}
+.rp::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:6px}
+.rpe{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center}
+.rpei{font-size:44px;margin-bottom:10px;opacity:.4}
+.rpet{font-size:14px;font-weight:700;color:var(--gray);margin-bottom:5px}
+.rpes{font-size:12.5px;color:var(--gray2);line-height:1.6;max-width:250px;font-weight:400}
+.tw{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:9px;background:rgba(255,252,248,.98);border:1.5px solid var(--bdr2);box-shadow:var(--sh2);font-size:12.5px;font-weight:600;min-width:180px;max-width:310px;animation:tin .22s ease;pointer-events:auto;position:relative;overflow:hidden}
+.toast.hide{animation:tout .22s ease forwards}
+.tbar{position:absolute;bottom:0;left:0;right:0;height:3px}
+.toast.ok .tbar{background:#15803d}.toast.info .tbar{background:#1e3a6e}
+.toast.warn .tbar{background:#e8750a}.toast.err .tbar{background:#b91c1c}.toast.kb .tbar{background:#7c3aed}
+@keyframes tin{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes tout{from{opacity:1}to{opacity:0;transform:translateX(22px)}}
+.ov{position:fixed;inset:0;background:rgba(10,22,40,.42);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:center;justify-content:center;padding:18px}
+.ov.open{display:flex}
+.modal{background:rgba(255,252,248,.99);border-radius:14px;width:100%;max-width:560px;border:1.5px solid var(--bdr2);box-shadow:0 24px 52px rgba(10,22,40,.22);animation:min .18s ease;overflow:hidden;position:relative}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1e3a6e,#e8750a,#f59e0b)}
+@keyframes min{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:none}}
+.mhd{padding:15px 18px 12px;border-bottom:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
+.mttl{font-size:14px;font-weight:700}
+.mclose{width:26px;height:26px;border:1.5px solid var(--bdr);background:rgba(10,22,40,.05);border-radius:7px;cursor:pointer;font-size:11px;color:var(--gray);display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .13s}
+.mclose:hover{background:#b91c1c;color:#fff;border-color:#b91c1c}
+.mbdy{padding:14px;max-height:84vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.imp-section{border-radius:10px;overflow:hidden;border:1.5px solid var(--bdr)}
+.imp-section-hd{display:flex;align-items:center;gap:9px;padding:10px 14px;background:rgba(10,22,40,.025);border-bottom:1.5px solid var(--bdr)}
+.imp-s1 .imp-section-hd{border-bottom-color:rgba(30,58,110,.15)}
+.imp-s2 .imp-section-hd{border-bottom-color:rgba(91,33,182,.15)}
+.imp-section-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.imp-s1 .imp-section-icon{background:rgba(30,58,110,.1)}
+.imp-s2 .imp-section-icon{background:rgba(91,33,182,.1)}
+.imp-section-title{font-size:13px;font-weight:700;color:var(--navy)}
+.imp-section-sub{font-size:11px;color:var(--gray);margin-top:1px}
+.imp-badge{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:auto}
+.imp-badge.req{background:rgba(185,28,28,.09);color:#b91c1c;border:1px solid rgba(185,28,28,.22)}
+.imp-badge.opt{background:rgba(91,33,182,.09);color:#5b21b6;border:1px solid rgba(91,33,182,.22)}
+.imp-section-body{padding:11px}
+.dz{border:2px dashed rgba(10,22,40,.18);border-radius:9px;padding:18px 16px;text-align:center;cursor:pointer;transition:all .18s;background:rgba(30,58,110,.025);position:relative}
+.dz:hover,.dz.ov2{border-color:var(--accent);background:rgba(30,58,110,.055)}
+.dz-kb:hover,.dz-kb.ov2{border-color:#7c3aed;background:rgba(124,58,237,.05)}
+.dz input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.dzico{font-size:22px;margin-bottom:5px;display:block}
+.dzttl{font-size:12.5px;font-weight:700;margin-bottom:2px;color:var(--navy)}
+.dzsub{font-size:11px;color:var(--gray);font-weight:400}
+.dzsub b{color:var(--accent);font-weight:600}
+.dz-kb .dzsub b{color:#7c3aed}
+.prca{display:none}
+.prb{background:rgba(10,22,40,.08);border-radius:8px;height:4px;overflow:hidden;margin-bottom:10px}
+.prf{height:100%;background:var(--ga);border-radius:8px;transition:width .34s ease;width:0%}
+.steps{display:flex;flex-direction:column;gap:5px}
+.step{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:500;color:var(--gray)}
+.step.done{color:var(--green);font-weight:600}.step.active{color:var(--navy);font-weight:600}
+.stico{width:14px;text-align:center}
+.ires{display:none;padding:10px 12px;background:rgba(15,107,50,.05);border-radius:8px;border:1.5px solid rgba(15,107,50,.16);margin-top:8px}
+.ires-kb{background:rgba(91,33,182,.04);border-color:rgba(91,33,182,.2)}
+.irest{font-size:11.5px;font-weight:700;color:var(--green);margin-bottom:8px}
+.irest-kb{color:#5b21b6}
+.istats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px}
+.istat{background:#fff;border-radius:8px;padding:8px 11px;border:1.5px solid var(--bdr)}
+.isv{font-size:18px;font-weight:800;color:var(--accent);line-height:1;margin-bottom:2px}
+.isv-kb{color:#7c3aed}
+.isl{font-size:9px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.dbgbox{padding:8px 11px;background:rgba(217,106,0,.045);border:1.5px solid rgba(217,106,0,.16);border-radius:8px;margin-bottom:8px}
+.dbgttl{font-size:10.5px;font-weight:700;color:var(--orange);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px}
+.chip{font-size:9.5px;padding:2px 6px;border-radius:4px;font-family:'Inter',monospace;font-weight:600}
+.chip.ok{background:rgba(15,107,50,.09);color:var(--green);border:1px solid rgba(15,107,50,.18)}
+.chip.ms{background:rgba(90,106,138,.08);color:var(--gray2);border:1px solid rgba(90,106,138,.12)}
+.rcols{font-size:9px;font-family:'Inter',monospace;color:#1a2b4a;background:rgba(255,255,255,.6);border-radius:5px;padding:4px 7px;line-height:1.8;word-break:break-all;border:1px solid rgba(10,22,40,.09)}
+.savebox{padding:8px 11px;background:rgba(30,58,110,.06);border:1.5px solid rgba(30,58,110,.16);border-radius:8px;display:flex;align-items:center;gap:9px;margin-top:6px}
+.sbttl{font-size:11.5px;font-weight:700}.sbsub{font-size:10px;color:var(--gray);font-weight:400}
+.swarn{padding:6px 10px;background:rgba(185,28,28,.05);border:1.5px solid rgba(185,28,28,.16);border-radius:7px;font-size:10.5px;font-weight:600;color:#b91c1c;margin-top:6px;display:none}
+.kb-info{margin-top:8px;padding:9px 12px;background:rgba(91,33,182,.05);border:1.5px solid rgba(91,33,182,.2);border-radius:8px}
+.kb-info-ttl{font-size:11.5px;font-weight:700;color:#5b21b6;margin-bottom:5px}
+.kb-info-body{font-size:11px;color:var(--gray);line-height:1.7}
+.kb-kw{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px}
+.kb-chip{font-size:9.5px;padding:2px 7px;border-radius:10px;background:rgba(91,33,182,.09);border:1px solid rgba(91,33,182,.2);color:#5b21b6;font-weight:600;font-family:'Inter',monospace}
+.cfmb{padding:20px;text-align:center}
+.cfmi{font-size:34px;margin-bottom:9px}.cfmt{font-size:14.5px;font-weight:700;margin-bottom:5px}
+.cfms{font-size:12.5px;color:var(--gray);line-height:1.5;margin-bottom:16px;font-weight:400}
+.cfmbtns{display:flex;gap:8px;justify-content:center}
+.cfmbtn{padding:7px 18px;border-radius:7px;border:none;cursor:pointer;font-size:12.5px;font-weight:700;font-family:inherit}
+.cfmbtn.can{background:rgba(10,22,40,.07);border:1.5px solid var(--bdr)}
+.cfmbtn.ok{background:linear-gradient(135deg,#b91c1c,#dc2626);color:#fff}
+@media(max-width:800px){
+  .r3{grid-template-columns:1fr}.aibdy{flex-direction:column}
+  .chat{width:100%;border-right:none;border-bottom:1.5px solid var(--bdr)}
+  nav{flex-wrap:wrap;height:auto;padding:9px 13px}
+  .hero h1{font-size:30px}.hero{padding:34px 13px 38px}
+  .st2c{flex-direction:column}
+  .stcol:first-child{border-right:none;border-bottom:1.5px solid rgba(15,107,50,.1)}
+  .tkpg{padding:14px 12px 44px}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="topbar"></div>
+<div class="tw" id="TW"></div>
+<div class="wrap">
+<nav>
+  <div class="brand">
+    <div class="logo-btn"><input type="file" accept="image/*" onchange="uploadLogo(this.files[0])"/><span class="logo-init" id="logoInit">L</span><img id="logoImg" alt=""/><div class="logo-hint">📷</div></div>
+    <div class="brand-name">LI<b>CA</b> — Customer Intelligence</div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" id="t-search" onclick="goPage('search')">🔍 Search</button>
+    <button class="tab tk" id="t-truck" onclick="goPage('truck')">🚛 Truck Ban <span class="tbadge" id="tbadge">0</span></button>
+    <button class="tab" id="t-ai" onclick="goPage('ai')">✦ AI Assistant</button>
+  </div>
+  <div class="nav-r">
+    <div class="dpill"><div class="dot" id="DOT"></div><div><div class="dm" id="DM">No data</div><div class="ds" id="DS">Import to start</div></div></div>
+    <div class="kb-pill" id="kbPill" style="display:none"><div class="kb-dot" id="kbDot"></div><span id="kbStatus">AI Guide</span></div>
+    <button class="btn imp" onclick="openImp()">⬆ Import</button>
+    <button class="btn sav" id="btnSave" onclick="saveData()" style="display:none">💾 Save</button>
+    <button class="btn clr" id="btnClr" onclick="openCfm()" style="display:none">🗑 Clear</button>
+  </div>
+</nav>
+
+<div class="page on" id="page-search">
+  <div class="hero">
+    <div class="hero-badge">▸ Customer Intelligence · Enterprise Grade</div>
+    <h1>Customer <b>Intelligence</b></h1>
+    <div class="sw">
+      <div class="sbox">
+        <div class="sico">⌕</div>
+        <input class="sinp" id="SI" type="text" placeholder="Search sold-to code or customer name..." autocomplete="off" oninput="onSI()" onkeydown="onSK(event)"/>
+        <button class="sclr" id="SC" onclick="clrS()">✕</button>
+      </div>
+      <div class="drop" id="DROP"></div>
+    </div>
+    <p class="shint"><span class="hchip">Sold-to Code</span> exact match &nbsp;·&nbsp; <span class="hchip">Customer Name</span> keyword search</p>
+    <div class="rarea" id="RA"></div>
+  </div>
+</div>
+
+<div class="page" id="page-truck">
+  <div class="tkpg">
+    <div class="tkhd"><div class="tkico">🚛</div><div><div class="tkttl">Truck Ban Locations</div><div class="tksub">Ship-to locations with truck ban / weight restrictions</div></div></div>
+    <div class="tkst" id="TKST"></div>
+    <div id="TKLIST"></div>
+  </div>
+</div>
+
+<div class="page" id="page-ai">
+  <div class="aipg">
+    <div class="aihd">
+      <div class="aiav" id="AIAV"><img id="AIAVimg" alt=""/><span id="AIAVini" style="font-size:12px;font-weight:700;color:#fff">L</span></div>
+      <div class="aihdt">LICA AI Assistant</div>
+      <div class="ai-kb-badge" id="aiKbBadge" style="display:none"><div class="ai-kb-dot" id="aiKbDot"></div><span id="aiKbText">AI Guide active</span></div>
+    </div>
+    <div class="aibdy">
+      <div class="chat">
+        <div class="ctx-bar" id="ctxBar">
+          <span>📌</span><span id="ctxLabel">—</span>
+          <span class="ctx-close" onclick="clearCtx()">✕</span>
+        </div>
+        <div class="msgs" id="MSGS"></div>
+        <div class="cinrow">
+          <input class="cinp" id="CINP" type="text" placeholder="Type customer name, code, or ask..." onkeydown="if(event.key==='Enter')sendChat()"/>
+          <button class="csend" onclick="sendChat()">➤</button>
+        </div>
+      </div>
+      <div class="rp" id="RP">
+        <div class="rpe"><div class="rpei">🔍</div><div class="rpet">Results appear here</div><div class="rpes">Type a customer name or code in the chat panel.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="ov" id="OV" onclick="if(event.target===this)closeImp()">
+  <div class="modal">
+    <div class="mhd"><div class="mttl">⬆ Import Files</div><button class="mclose" onclick="closeImp()">✕</button></div>
+    <div class="mbdy">
+      <div class="imp-section imp-s1">
+        <div class="imp-section-hd"><div class="imp-section-icon">📂</div><div><div class="imp-section-title">Customer Data File</div><div class="imp-section-sub">Your customer list — XLSX, XLS, CSV</div></div><span class="imp-badge req">Required</span></div>
+        <div class="imp-section-body">
+          <div class="dz" id="DZ" ondragover="event.preventDefault();this.classList.add('ov2')" ondragleave="this.classList.remove('ov2')" ondrop="onDropData(event)">
+            <input type="file" accept=".xlsx,.xls,.csv" onchange="handleDataFile(this.files[0])" id="FI"/>
+            <span class="dzico">📂</span><div class="dzttl">Drag & Drop your customer data file here</div><div class="dzsub">or <b>click anywhere to browse</b> · XLSX, XLS, CSV</div>
+          </div>
+          <div class="prca" id="PRCA"><div class="prb"><div class="prf" id="PRF"></div></div><div class="steps"><div class="step" id="S1"><span class="stico">⏳</span>Reading file...</div><div class="step" id="S2"><span class="stico">⏳</span>Detecting sheet & columns...</div><div class="step" id="S3"><span class="stico">⏳</span>Building customer database...</div><div class="step" id="S4"><span class="stico">⏳</span>Saving to storage...</div></div></div>
+          <div class="ires" id="IRES">
+            <div class="irest">✅ Customer data imported</div>
+            <div class="istats"><div class="istat"><div class="isv" id="stR">0</div><div class="isl">Rows</div></div><div class="istat"><div class="isv" id="stC">0</div><div class="isl">Customers</div></div><div class="istat"><div class="isv" id="stS">0</div><div class="isl">Ship-to</div></div><div class="istat"><div class="isv" id="stSh">—</div><div class="isl">Sheet</div></div></div>
+            <div class="dbgbox"><div class="dbgttl"><span>Column Detection</span><span id="DBGSC" style="font-size:10px;color:var(--green);font-weight:600"></span></div><div class="chips" id="CHIPS"></div><div style="font-size:9px;font-weight:600;color:var(--orange);margin-bottom:3px">Columns detected:</div><div class="rcols" id="RCOLS"></div></div>
+            <div class="swarn" id="SWARN"></div>
+            <div class="savebox" id="SAVEBOX" style="display:none"><span style="font-size:15px">💾</span><div><div class="sbttl">Saved to browser storage</div><div class="sbsub" id="SBSUB"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="imp-section imp-s2">
+        <div class="imp-section-hd"><div class="imp-section-icon">🧠</div><div><div class="imp-section-title">AI Knowledge Guide</div><div class="imp-section-sub">LICA_AI_Keyword_Question_Guide_EN.xlsx</div></div><span class="imp-badge opt">Optional</span></div>
+        <div class="imp-section-body">
+          <div class="dz dz-kb" id="DZ-KB" ondragover="event.preventDefault();this.classList.add('ov2')" ondragleave="this.classList.remove('ov2')" ondrop="onDropKB(event)">
+            <input type="file" accept=".xlsx,.xls" onchange="handleKBFile(this.files[0])" id="FI-KB"/>
+            <span class="dzico">🧠</span><div class="dzttl">Drag & Drop the AI Knowledge Guide here</div><div class="dzsub">or <b>click anywhere to browse</b> · XLSX only</div>
+          </div>
+          <div class="ires ires-kb" id="IRES-KB"><div class="irest irest-kb" id="KB-RESULT-TTL">🧠 AI Knowledge Guide loaded</div><div class="istats"><div class="istat"><div class="isv isv-kb" id="kbKwCount">0</div><div class="isl">Keywords</div></div><div class="istat"><div class="isv isv-kb" id="kbQCount">0</div><div class="isl">Sample Q&As</div></div></div><div class="kb-info"><div class="kb-info-ttl">🧠 Additional phrases recognized:</div><div class="kb-kw" id="kbChips"></div></div></div>
+          <div class="kb-info" id="KB-INFO-BOX"><div class="kb-info-ttl">What does this file do?</div><div class="kb-info-body">• Teaches AI to recognize <strong>50+ additional ways</strong> of asking questions<br>• Enables: <em>"any paperwork?", "COA needed?", "DP required?", "driver dress code?"</em><br>• Works alongside the built-in AI — upload once, AI learns permanently</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="CFMOV" onclick="if(event.target===this)closeCfm()">
+  <div class="modal" style="max-width:340px">
+    <div class="mhd"><div class="mttl">Clear All Data</div><button class="mclose" onclick="closeCfm()">✕</button></div>
+    <div class="cfmb"><div class="cfmi">⚠️</div><div class="cfmt">Clear all data?</div><div class="cfms">This removes all customer data and AI knowledge from browser storage.</div>
+      <div class="cfmbtns"><button class="cfmbtn can" onclick="closeCfm()">Cancel</button><button class="cfmbtn ok" onclick="doClear()">Clear All</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ══ CONDITION TRANSLATION MAP ══ */
+const COND_MAP={'Truck ban 10MT':'Truck ban — Max 10MT','Truck ban, delivery to another WH':'Truck ban — Deliver to alternative warehouse','Truck ban: 6h-9h sáng':'Truck ban — Restricted 06:00–09:00 (morning)','Truck ban: giao hàng 22h-24h':'Truck ban — Delivery window: 22:00–24:00','Truck ban: giao hàng sau 19h':'Truck ban — Deliver after 19:00','Truck ban: giao hàng sau 20h':'Truck ban — Deliver after 20:00','Truck ban: giao hàng sau 20h30':'Truck ban — Deliver after 20:30','Truck ban: giao hàng sau 21h':'Truck ban — Deliver after 21:00','Truck ban: giao hàng sau 22h':'Truck ban — Deliver after 22:00','Truck ban: giao hàng sau 22h30':'Truck ban — Deliver after 22:30','Truck ban: để xe ngoài đường lớn có xe nâng hàng vào, chỉ đi xe 15MT':'Truck ban — Park on main road, use forklift for unloading. Max 15MT only','Truck weight 10MT':'Truck weight limit: 10MT','Báo số xe cho kho trước khi đến':'Notify warehouse with truck plate number before arrival','Chỉ đi xe 15MT':'Truck size limit: 15MT only','Chọn xe không có xương cá, thanh chắn giữa.':'Use truck without fish-bone racks or center dividers','Container/truck phải lót carton/bao nilong trước khi load hàng':'Container/truck must be lined with carton or plastic sheeting before loading','DP giấy':'Delivery Paper (DP) required','DP giấy.':'Delivery Paper (DP) required','Dừng xe cách kho hàng 500m và gọi cho khách ra dỡ hàng.':'Stop 500m from warehouse — call customer to come out for unloading','Giao hàng trước 15h00':'Deliver before 15:00','Giao trước 14h00':'Deliver before 14:00','IN COA đem theo khi giao hàng':'Print and bring COA document on delivery','Liên hệ PIC trước khi giao hàng 1 ngày':'Contact PIC 1 day before delivery','Liên hệ PIC trước khi giao hàng 1 tiếng':'Contact PIC 1 hour before delivery','Note tài xế: quần dài, giày bao gót, áo phản quang':'Driver dress code: long pants, closed-toe shoes, reflective vest','Trong quá trình bốc xếp hàng vào container, tài xế sẽ trực tiếp giám sát':'Driver must supervise the loading process into container','Vị trí nhá máy bàu bàng giao ở cổng nằm trên đường D5.':'Delivery point at gate on D5 Road (Bau Bang factory)'};
+function trCond(r){if(!r)return'';const t=r.trim();return COND_MAP[t]||t;}
+
+/* ══ DEFLATE + ZIP ══ */
+function tinflate(data){const b=data instanceof Uint8Array?data:new Uint8Array(data);let p=0,buf=0,bits=0;const out=[];function rb(n){while(bits<n){buf|=b[p++]<<bits;bits+=8;}const v=buf&((1<<n)-1);buf>>>=n;bits-=n;return v;}function tbl(lens){const ml=lens.reduce((a,x)=>Math.max(a,x),0);const cnt=new Array(ml+1).fill(0);for(const l of lens)if(l>0)cnt[l]++;const nc=new Array(ml+2).fill(0);for(let i=1;i<=ml;i++)nc[i+1]=(nc[i]+cnt[i])<<1;const map=new Map();for(let s=0;s<lens.length;s++){const l=lens[s];if(!l)continue;let c=nc[l]++,r=0;for(let i=0;i<l;i++){r=(r<<1)|(c&1);c>>=1;}map.set(l*65536+r,s);}return{map,ml};}function dec(t){let c=0;for(let l=1;l<=t.ml;l++){c=(c<<1)|rb(1);const v=t.map.get(l*65536+c);if(v!==undefined)return v;}throw Error('bad code');}function ftl(){const l=new Uint8Array(288);for(let i=0;i<144;i++)l[i]=8;for(let i=144;i<256;i++)l[i]=9;for(let i=256;i<280;i++)l[i]=7;for(let i=280;i<288;i++)l[i]=8;return tbl(l);}function fdl(){return tbl(new Uint8Array(32).fill(5));}const CLO=[16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15];const LB=[3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258];const LE=[0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0];const DB=[1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577];const DE=[0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13];let done=false;while(!done){const bf=rb(1),bt=rb(2);if(bt===0){bits=0;buf=0;const ln=b[p]|(b[p+1]<<8);p+=4;for(let i=0;i<ln;i++)out.push(b[p++]);}else{let lt,dt;if(bt===1){lt=ftl();dt=fdl();}else{const hl=rb(5)+257,hd=rb(5)+1,hc=rb(4)+4;const cl=new Uint8Array(19);for(let i=0;i<hc;i++)cl[CLO[i]]=rb(3);const ct=tbl(cl);const al=new Uint8Array(hl+hd);let i=0;while(i<al.length){const c=dec(ct);if(c<16)al[i++]=c;else if(c===16){const r=rb(2)+3;for(let j=0;j<r;j++)al[i++]=al[i-1];}else if(c===17)i+=rb(3)+3;else i+=rb(7)+11;}lt=tbl(al.subarray(0,hl));dt=tbl(al.subarray(hl));}while(true){const s=dec(lt);if(s<256){out.push(s);}else if(s===256){break;}else{const li=s-257;const len=LB[li]+rb(LE[li]);const di=dec(dt);const dst=DB[di]+rb(DE[di]);let q=out.length-dst;for(let j=0;j<len;j++)out.push(out[q++]);}}}if(bf)done=true;}return new Uint8Array(out);}
+async function inflate(data){if(typeof DecompressionStream!=='undefined'){try{const ds=new DecompressionStream('deflate-raw');const w=ds.writable.getWriter(),r=ds.readable.getReader();const chunks=[];w.write(data);w.close();while(true){const{done,value}=await r.read();if(done)break;chunks.push(value);}const tot=chunks.reduce((a,c)=>a+c.length,0);const out=new Uint8Array(tot);let off=0;for(const c of chunks){out.set(c,off);off+=c.length;}return out;}catch(e){console.warn('DS:',e.message);}}return tinflate(data);}
+async function unzip(bytes){const files={};let eocd=-1;for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65558);i--){if(bytes[i]===0x50&&bytes[i+1]===0x4B&&bytes[i+2]===0x05&&bytes[i+3]===0x06){eocd=i;break;}}if(eocd<0)throw Error('Not a valid ZIP');const u32=o=>(bytes[o]|(bytes[o+1]<<8)|(bytes[o+2]<<16)|(bytes[o+3]<<24))>>>0;const u16=o=>bytes[o]|(bytes[o+1]<<8);const TD=new TextDecoder('utf-8');let pos=u32(eocd+16);const end=pos+u32(eocd+12);while(pos<end&&pos+4<bytes.length){if(!(bytes[pos]===0x50&&bytes[pos+1]===0x4B&&bytes[pos+2]===0x01&&bytes[pos+3]===0x02))break;const cm=u16(pos+10),cSz=u32(pos+20),fnL=u16(pos+28),exL=u16(pos+30),cmtL=u16(pos+32),lOff=u32(pos+42);const fname=TD.decode(bytes.slice(pos+46,pos+46+fnL)).toLowerCase();pos+=46+fnL+exL+cmtL;const dStart=lOff+30+u16(lOff+26)+u16(lOff+28);const comp=bytes.slice(dStart,dStart+cSz);try{files[fname]=(cm===0)?comp:await inflate(comp);}catch(e){console.warn('skip',fname);}}return files;}
+const TD2=new TextDecoder('utf-8');
+const xd=s=>s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&#(\d+);/g,(_,n)=>String.fromCharCode(+n));
+function getf(files,key){return files[key.toLowerCase()]?TD2.decode(files[key.toLowerCase()]):null;}
+function parseSS(xml){const arr=[];const re=/<si>([\s\S]*?)<\/si>/g;let m;while((m=re.exec(xml))!==null){const parts=[];const tr=/<t[^>]*>([\s\S]*?)<\/t>/g;let tm;while((tm=tr.exec(m[1]))!==null)parts.push(xd(tm[1]));arr.push(parts.join(''));}return arr;}
+function parseWB(wbXml,rXml){const rels={};let m;const rr=/<Relationship\s[^>]*\/>/g;while((m=rr.exec(rXml))!==null){const id=(/\bId="([^"]*)"/.exec(m[0])||[])[1]||'';const tgt=(/\bTarget="([^"]*)"/.exec(m[0])||[])[1]||'';rels[id]=tgt;}const sheets=[];const sr=/<sheet\s[^>]*>/g;while((m=sr.exec(wbXml))!==null){const name=(/\bname="([^"]*)"/.exec(m[0])||[])[1]||'';const rid=(/\br:id="([^"]*)"/.exec(m[0])||[])[1]||'';if(name&&rid&&rels[rid])sheets.push({name,file:('xl/'+rels[rid]).toLowerCase()});}return sheets;}
+function colidx(letters){let n=0;for(const c of letters)n=n*26+(c.charCodeAt(0)-64);return n-1;}
+function parseSheet(xml,ss){const rowMap=new Map();const rr=/<row\s[^>]*\br="(\d+)"[^>]*>([\s\S]*?)<\/row>/g;let rm;while((rm=rr.exec(xml))!==null){const rn=parseInt(rm[1]);const cells={};const cr=/<c\s([^>]*)>([\s\S]*?)<\/c>/g;let cm;while((cm=cr.exec(rm[2]))!==null){const at=cm[1],inn=cm[2];const rf=/\br="([A-Z]+)\d+"/.exec(at);if(!rf)continue;const col=colidx(rf[1]);const t=(/\bt="([^"]*)"/.exec(at)||[])[1]||'';const vM=/<v>([\s\S]*?)<\/v>/.exec(inn);const iM=/<is>[\s\S]*?<t[^>]*>([\s\S]*?)<\/t>/.exec(inn);let val='';if(t==='s')val=ss[parseInt(vM?vM[1]:0)]||'';else if(t==='inlineStr')val=iM?xd(iM[1]):'';else if(t==='b')val=vM?(vM[1]==='1'?'TRUE':'FALSE'):'';else val=vM?xd(vM[1]):'';cells[col]=val;}if(Object.keys(cells).length)rowMap.set(rn,cells);}if(!rowMap.size)return[];const sorted=[...rowMap.entries()].sort((a,b)=>a[0]-b[0]);const[,hc]=sorted[0];const maxCol=Math.max(...Object.keys(hc).map(Number));const hdrs=[];for(let i=0;i<=maxCol;i++)hdrs[i]=(hc[i]||'').replace(/\u00a0/g,' ').trim()||('C'+(i+1));const rows=[];for(let i=1;i<sorted.length;i++){const[,cells]=sorted[i];const obj={};let hasVal=false;for(let ci=0;ci<=maxCol;ci++){const v=(cells[ci]!==undefined?cells[ci]:'').replace(/\u00a0/g,' ').trim();obj[hdrs[ci]]=v;if(v)hasVal=true;}if(hasVal)rows.push(obj);}return rows;}
+function parseSheetRaw(xml,ss){const rowMap=new Map();const rr=/<row\s[^>]*\br="(\d+)"[^>]*>([\s\S]*?)<\/row>/g;let rm;while((rm=rr.exec(xml))!==null){const rn=parseInt(rm[1]);const cells={};const cr=/<c\s([^>]*)>([\s\S]*?)<\/c>/g;let cm;while((cm=cr.exec(rm[2]))!==null){const at=cm[1],inn=cm[2];const rf=/\br="([A-Z]+)\d+"/.exec(at);if(!rf)continue;const col=colidx(rf[1]);const t=(/\bt="([^"]*)"/.exec(at)||[])[1]||'';const vM=/<v>([\s\S]*?)<\/v>/.exec(inn);const iM=/<is>[\s\S]*?<t[^>]*>([\s\S]*?)<\/t>/.exec(inn);let val='';if(t==='s')val=ss[parseInt(vM?vM[1]:0)]||'';else if(t==='inlineStr')val=iM?xd(iM[1]):'';else val=vM?xd(vM[1]):'';cells[col]=val;}if(Object.keys(cells).length>0)rowMap.set(rn,cells);}const sorted=[...rowMap.entries()].sort((a,b)=>a[0]-b[0]);return sorted.map(([,cells])=>{const maxCol=Math.max(...Object.keys(cells).map(Number));const row=[];for(let i=0;i<=maxCol;i++)row.push((cells[i]||'').replace(/\u00a0/g,' ').trim());return row;});}
+function parseCSV(text){const lines=text.split(/\r?\n/),rows=[];for(const line of lines){if(!line.trim())continue;const cols=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){if(inQ&&line[i+1]==='"'){cur+='"';i++;}else inQ=!inQ;}else if((ch===','||ch==='\t')&&!inQ){cols.push(cur.trim());cur='';}else cur+=ch;}cols.push(cur.trim());rows.push(cols);}if(!rows.length)return[];const h=rows[0];return rows.slice(1).filter(r=>r.some(v=>v)).map(r=>{const o={};h.forEach((k,i)=>{o[k]=r[i]||'';});return o;});}
+async function parseXLSX(file){const ext=(file.name.split('.').pop()||'').toLowerCase();if(ext==='csv'){const t=await file.text();return{rows:parseCSV(t),sheet:'CSV'};}const buf=await file.arrayBuffer();const bytes=new Uint8Array(buf);const files=await unzip(bytes);const ss=parseSS(getf(files,'xl/sharedStrings.xml')||'');const sheets=parseWB(getf(files,'xl/workbook.xml')||'',getf(files,'xl/_rels/workbook.xml.rels')||'');const exp=sheets.find(s=>s.name.toLowerCase()==='export');if(exp){const xml=files[exp.file]?TD2.decode(files[exp.file]):null;if(xml){const rows=parseSheet(xml,ss);if(rows.length>0)return{rows,sheet:'Export',files,ss,sheets};}}let best=null,bestN='';for(const sh of sheets){const xml=files[sh.file]?TD2.decode(files[sh.file]):null;if(!xml)continue;const rows=parseSheet(xml,ss);if(!best||rows.length>best.length){best=rows;bestN=sh.name;}}if(!best||!best.length){for(const[k,data]of Object.entries(files)){if(!/xl\/worksheets\/sheet/.test(k))continue;const rows=parseSheet(TD2.decode(data),ss);if(!best||rows.length>best.length){best=rows;bestN=k;}}}if(!best||!best.length)throw Error('No data found');return{rows:best,sheet:bestN,files,ss,sheets};}
+
+/* ══ COLUMNS ══ */
+const COLS={soldToCode:['sold to code','soldtocode'],soldToName:['sold to','soldto'],shipToCode:['shipto code','shiptocode'],shipToName:['shipto','shiptodesc'],shipToAddr:['shipto address','shiptoaddress','ship to address'],payTerm:['paymentterm','payment term'],shippingCond:['shippingcondition','shipping condition'],distChan:['distributionchannel','distribution channel'],delivHdr:['txtdeliverytextheader'],delivCond:['txtdeliverytextcondition','txtdeliverycondition'],truckSize:['container/truck size','containertruck size','truck size'],salesRep:['sales rep.','sales rep'],fgTg:['fg/tg'],ofo:['ofo'],salesDist:['salesdistrict','sales district']};
+const CLBL={soldToCode:'Sold-to Code★',soldToName:'Sold-to Name★',shipToCode:'Ship-to Code',shipToName:'Ship-to Name',shipToAddr:'Ship-to Address',payTerm:'Payment Term',shippingCond:'Shipping Condition',distChan:'Distribution Channel',delivHdr:'Delivery Header',delivCond:'Delivery Condition★',truckSize:'Truck Size',salesRep:'Sales Rep',fgTg:'FG/TG',ofo:'OFO',salesDist:'Sales District'};
+function nk(s){return String(s).toLowerCase().replace(/[^a-z0-9]/g,'');}
+function buildMap(keys){const nkeys=keys.map(k=>({o:k,n:nk(k)}));const m={},r={};for(const[f,cands]of Object.entries(COLS)){let found=null;for(const c of cands){const nc=nk(c);const h=nkeys.find(k=>k.n===nc);if(h){found=h.o;break;}}if(!found){for(const c of cands){const nc=nk(c);if(nc.length<4)continue;const h=nkeys.find(k=>k.n.includes(nc));if(h){found=h.o;break;}}}m[f]=found;r[f]=found;}return{m,r};}
+
+/* ══ KB ══ */
+const KB_KEY='lica_kb_v1';
+let KB={loaded:false,truck:[],shipCount:[],notes:[],specialST:[],truckGlobal:[],stopWords:[],sampleQs:[],fileName:'',kwCount:0,qCount:0};
+async function parseKBFile(file){const buf=await file.arrayBuffer();const bytes=new Uint8Array(buf);const files=await unzip(bytes);const ss=parseSS(getf(files,'xl/sharedStrings.xml')||'');const sheets=parseWB(getf(files,'xl/workbook.xml')||'',getf(files,'xl/_rels/workbook.xml.rels')||'');const newKB={loaded:false,truck:[],shipCount:[],notes:[],specialST:[],truckGlobal:[],stopWords:[],sampleQs:[],fileName:file.name,kwCount:0,qCount:0};const kwSheetMeta=sheets.find(s=>s.name.toLowerCase().includes('keyword')||s.name.toLowerCase().includes('master'))||sheets[sheets.length-1];if(kwSheetMeta){const kwXml=files[kwSheetMeta.file]?TD2.decode(files[kwSheetMeta.file]):null;if(kwXml){const rawRows=parseSheetRaw(kwXml,ss);let isHeader=true;for(const row of rawRows){const cat=(row[0]||'').toUpperCase().trim();const kw=(row[1]||'').toLowerCase().trim();if(isHeader&&cat.includes('CATEGORY')){isHeader=false;continue;}if(cat.startsWith('==='))continue;if(!kw||kw.length<2||kw==='keyword / phrase'||kw==='keyword')continue;if(cat.includes('TRUCK BAN')){if(!newKB.truck.includes(kw))newKB.truck.push(kw);}if(cat.includes('SHIP-TO COUNT')||cat.includes('SHIP TO COUNT')){if(!newKB.shipCount.includes(kw))newKB.shipCount.push(kw);}if(cat.includes('DELIVERY NOTE')){if(!newKB.notes.includes(kw))newKB.notes.push(kw);}if(cat.includes('GLOBAL SPECIAL')||cat.includes('GLOBAL — SPECIAL')){if(!newKB.specialST.includes(kw))newKB.specialST.push(kw);}if(cat.includes('GLOBAL TRUCK')||cat.includes('GLOBAL — TRUCK')){if(!newKB.truckGlobal.includes(kw))newKB.truckGlobal.push(kw);}newKB.kwCount++;}}}for(const sh of sheets){if(sh===kwSheetMeta)continue;const xml=files[sh.file]?TD2.decode(files[sh.file]):null;if(!xml)continue;const rawRows=parseSheetRaw(xml,ss);for(const row of rawRows){const q=(row[1]||'').trim();if(!q||q.length<5)continue;if(/^(intent|ai response|trigger|key|#|\d+$|===|stop word|category|full profile|lists all|per ship|number of|is|extract)/i.test(q))continue;newKB.sampleQs.push(q.toLowerCase());newKB.qCount++;}}if(newKB.kwCount===0)applyBuiltinKB(newKB);newKB.loaded=newKB.kwCount>0||newKB.sampleQs.length>0;return newKB;}
+function applyBuiltinKB(kb){kb.truck=['truck ban','truck restriction','truck restrictions','truck weight restriction','truck weight limit','weight restriction','weight limit','vehicle weight limit'];kb.shipCount=['how many ship-to','number of ship-to','list ship-to','delivery locations','delivery addresses','delivery points'];kb.notes=['any notes','delivery notes','requirements','special requirements','delivery conditions','paperwork','coa','pic','driver dress code','notify','stop 500m','driver supervise'];kb.specialST=['which ship-to have special','all locations with special'];kb.truckGlobal=['all truck ban','truck restricted locations'];kb.kwCount=kb.truck.length+kb.shipCount.length+kb.notes.length;}
+function saveKB(kb){try{localStorage.setItem(KB_KEY,JSON.stringify(kb));}catch(e){console.warn('KB:',e.message);}}
+function loadKB(){try{const raw=localStorage.getItem(KB_KEY);if(!raw)return;const k=JSON.parse(raw);if(k&&k.loaded){KB=k;updateKBStatus();}}catch{}}
+function clearKB(){try{localStorage.removeItem(KB_KEY);}catch{}KB={loaded:false,truck:[],shipCount:[],notes:[],specialST:[],truckGlobal:[],stopWords:[],sampleQs:[],fileName:'',kwCount:0,qCount:0};updateKBStatus();}
+function updateKBStatus(){const pill=document.getElementById('kbPill'),dot=document.getElementById('kbDot'),stat=document.getElementById('kbStatus');const badge=document.getElementById('aiKbBadge'),bdot=document.getElementById('aiKbDot'),btxt=document.getElementById('aiKbText');if(KB.loaded){if(pill){pill.style.display='flex';dot.classList.add('on');stat.textContent='🧠 AI Guide ('+KB.kwCount+' kw)';}if(badge){badge.style.display='inline-flex';bdot.classList.add('on');btxt.textContent='AI Guide — '+KB.kwCount+' keywords active';}}else{if(pill){pill.style.display='none';dot.classList.remove('on');}if(badge){badge.style.display='none';bdot.classList.remove('on');}}}
+
+/* ══ STORAGE ══ */
+const SK='lica_db_v20',MK='lica_meta_v20';
+let DB={},IDX=[];
+function saveData(){if(!Object.keys(DB).length){toast('No data to save','warn');return;}setDot('sv');const ok=persist(DB);setTimeout(()=>{setDot('on');if(ok){saveMeta();navUpd();toast('Saved — '+ssz(),'ok');}else{navUpd();toast('Storage full — data in memory','warn',5000);}},400);}
+function persist(d){prune();try{localStorage.setItem(SK,JSON.stringify(d));return true;}catch{try{const s={};for(const[k,v]of Object.entries(d))s[k]={soldToCode:v.soldToCode,soldToName:v.soldToName,dcL:v.dcL,dcC:v.dcC,isScgRel:v.isScgRel,shiptos:v.shiptos,payTerms:v.payTerms,incos:v.incos};localStorage.setItem(SK,JSON.stringify(s));return true;}catch{return false;}}}
+function prune(){for(let i=1;i<=19;i++)['lica_db_v','lica_meta_v','meow_db_v'].forEach(p=>{try{localStorage.removeItem(p+i);}catch{}});}
+function saveMeta(){try{localStorage.setItem(MK,JSON.stringify({at:new Date().toISOString(),n:Object.keys(DB).length}));}catch{}}
+function loadS(){try{const r=localStorage.getItem(SK);if(!r)return false;const p=JSON.parse(r);if(!p||!Object.keys(p).length)return false;DB=p;buildIDX();return true;}catch{return false;}}
+function buildIDX(){IDX=Object.values(DB).map(c=>({code:c.soldToCode,name:c.soldToName,lc:(c.soldToCode||'').toLowerCase(),ln:(c.soldToName||'').toLowerCase()}));}
+function getMeta(){try{return JSON.parse(localStorage.getItem(MK)||'null');}catch{return null;}}
+function clrS(){[SK,MK].forEach(k=>{try{localStorage.removeItem(k);}catch{}});prune();DB={};IDX=[];}
+function ssz(){try{const kb=((localStorage.getItem(SK)||'').length*2)/1024;return kb>1024?(kb/1024).toFixed(1)+' MB':Math.round(kb)+' KB';}catch{return'?';}}
+function setDot(cls){document.getElementById('DOT').className='dot'+(cls?' '+cls:'');}
+function navUpd(){const n=Object.keys(DB).length;document.getElementById('btnSave').style.display=n?'inline-flex':'none';document.getElementById('btnClr').style.display=n?'inline-flex':'none';if(!n){setDot('');document.getElementById('DM').textContent='No data';document.getElementById('DS').textContent='Import to start';setBadge(0);return;}setDot('on');document.getElementById('DM').textContent=n.toLocaleString()+' customers';const meta=getMeta();if(meta){const d=new Date(meta.at);document.getElementById('DS').textContent='Saved '+d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' · '+ssz();}else document.getElementById('DS').textContent='Unsaved — click 💾';setBadge(Object.values(DB).reduce((a,c)=>a+c.shiptos.filter(s=>s.hasTruck).length,0));}
+function setBadge(n){const el=document.getElementById('tbadge');if(el)el.textContent=n;}
+function openCfm(){document.getElementById('CFMOV').classList.add('open');}
+function closeCfm(){document.getElementById('CFMOV').classList.remove('open');}
+function doClear(){closeCfm();clrS();clearKB();clearCtx();navUpd();document.getElementById('RA').innerHTML='';document.getElementById('SI').value='';document.getElementById('SC').style.display='none';clrRP();renderTruck();toast('All data cleared','info');}
+function toast(msg,type='info',dur=3400){const el=document.createElement('div');el.className='toast '+type;const ico={ok:'✓',warn:'⚠',err:'✕',info:'ℹ',kb:'🧠'}[type]||'ℹ';el.innerHTML=`<span style="font-size:13px">${ico}</span><span style="flex:1">${msg}</span><div class="tbar"></div>`;document.getElementById('TW').appendChild(el);setTimeout(()=>{el.classList.add('hide');setTimeout(()=>el.remove(),230);},dur);}
+function goPage(p){document.querySelectorAll('.page').forEach(el=>el.classList.remove('on'));document.querySelectorAll('.tab').forEach(el=>el.classList.remove('on'));document.getElementById('page-'+p).classList.add('on');document.getElementById('t-'+p).classList.add('on');if(p==='truck')renderTruck();}
+function openImp(){document.getElementById('OV').classList.add('open');}
+function closeImp(){document.getElementById('OV').classList.remove('open');resetImpModal();}
+function resetImpModal(){const dz=document.getElementById('DZ');dz.querySelector('.dzico').textContent='📂';dz.querySelector('.dzttl').textContent='Drag & Drop your customer data file here';dz.querySelector('.dzsub').innerHTML='or <b>click anywhere to browse</b> · XLSX, XLS, CSV';document.getElementById('PRCA').style.display='none';document.getElementById('IRES').style.display='none';document.getElementById('SAVEBOX').style.display='none';document.getElementById('SWARN').style.display='none';document.getElementById('FI').value='';document.getElementById('PRF').style.width='0%';['S1','S2','S3','S4'].forEach(id=>{const el=document.getElementById(id);el.className='step';el.querySelector('.stico').textContent='⏳';});const dzkb=document.getElementById('DZ-KB');dzkb.querySelector('.dzico').textContent='🧠';dzkb.querySelector('.dzttl').textContent='Drag & Drop the AI Knowledge Guide here';dzkb.querySelector('.dzsub').innerHTML='or <b>click anywhere to browse</b> · XLSX only';document.getElementById('IRES-KB').style.display='none';document.getElementById('KB-INFO-BOX').style.display='block';document.getElementById('FI-KB').value='';}
+function onDropData(e){e.preventDefault();document.getElementById('DZ').classList.remove('ov2');const f=e.dataTransfer.files[0];if(f)handleDataFile(f);}
+function onDropKB(e){e.preventDefault();document.getElementById('DZ-KB').classList.remove('ov2');const f=e.dataTransfer.files[0];if(f)handleKBFile(f);}
+function handleDataFile(f){if(!f)return;const ext=(f.name.split('.').pop()||'').toLowerCase();if(!['xlsx','xls','csv'].includes(ext)){toast('Upload .xlsx, .xls or .csv','warn');return;}document.getElementById('DZ').querySelector('.dzico').textContent='⏳';document.getElementById('DZ').querySelector('.dzttl').textContent='Importing...';doImportData(f);}
+function handleKBFile(f){if(!f)return;const ext=(f.name.split('.').pop()||'').toLowerCase();if(!['xlsx','xls'].includes(ext)){toast('AI Guide must be .xlsx','warn');return;}document.getElementById('DZ-KB').querySelector('.dzico').textContent='⏳';document.getElementById('DZ-KB').querySelector('.dzttl').textContent='Loading AI Knowledge Guide...';doImportKB(f);}
+async function doImportData(file){const SID=['S1','S2','S3','S4'],PCT=[25,50,80,100];function step(i,s){const el=document.getElementById(SID[i]);el.className='step '+(s==='done'?'done':s==='active'?'active':'');el.querySelector('.stico').textContent=s==='done'?'✓':s==='active'?'↻':'⏳';document.getElementById('PRF').style.width=PCT[i]+'%';}document.getElementById('PRCA').style.display='block';try{step(0,'active');await sleep(150);let rows,sheetName;try{const res=await parseXLSX(file);rows=res.rows;sheetName=res.sheet;}catch(e){toast('Read failed: '+e.message,'err',7000);console.error(e);step(0,'done');return;}step(0,'done');if(!rows||!rows.length){toast('No data found','warn',5000);return;}step(1,'active');await sleep(200);const keys=Object.keys(rows[0]);const{m,r}=buildMap(keys);const found=Object.values(r).filter(Boolean).length;if(!m.soldToCode&&!m.soldToName){document.getElementById('PRCA').style.display='none';document.getElementById('IRES').style.display='block';showDbg(r,keys,found,sheetName);toast('Cannot find Sold-to columns','err',8000);return;}step(1,'done');step(2,'active');await sleep(300);buildDB(rows,m);step(2,'done');step(3,'active');await sleep(200);const saved=persist(DB);if(saved)saveMeta();step(3,'done');document.getElementById('stR').textContent=rows.length.toLocaleString();document.getElementById('stC').textContent=Object.keys(DB).length.toLocaleString();document.getElementById('stS').textContent=Object.values(DB).reduce((a,c)=>a+c.shiptos.length,0).toLocaleString();document.getElementById('stSh').textContent=sheetName;document.getElementById('PRCA').style.display='none';document.getElementById('IRES').style.display='block';showDbg(r,keys,found,sheetName);if(saved){document.getElementById('SAVEBOX').style.display='flex';document.getElementById('SBSUB').textContent='Auto-saved ('+ssz()+')';toast('✓ Imported '+Object.keys(DB).length.toLocaleString()+' customers','ok');}else{document.getElementById('SWARN').style.display='block';document.getElementById('SWARN').textContent='⚠ Storage full — data in memory';toast('Imported but storage full','warn',5000);}navUpd();document.getElementById('DZ').querySelector('.dzico').textContent='✅';document.getElementById('DZ').querySelector('.dzttl').textContent='Customer data imported successfully';}catch(e){console.error(e);toast('Error: '+e.message,'err',7000);}}
+async function doImportKB(file){try{const kb=await parseKBFile(file);if(!kb.loaded){applyBuiltinKB(kb);kb.loaded=true;kb.fileName=file.name;}KB=kb;saveKB(KB);updateKBStatus();document.getElementById('DZ-KB').querySelector('.dzico').textContent='🧠';document.getElementById('DZ-KB').querySelector('.dzttl').textContent='AI Knowledge Guide loaded';document.getElementById('DZ-KB').querySelector('.dzsub').innerHTML=`<span style="color:#7c3aed;font-weight:700">${esc(file.name)}</span>`;document.getElementById('IRES-KB').style.display='block';document.getElementById('KB-INFO-BOX').style.display='none';document.getElementById('KB-RESULT-TTL').textContent='🧠 '+KB.kwCount+' keywords loaded';document.getElementById('kbKwCount').textContent=KB.kwCount;document.getElementById('kbQCount').textContent=KB.qCount||KB.sampleQs.length;const preview=[...new Set([...KB.truck.slice(0,4),...KB.notes.slice(0,5),...KB.shipCount.slice(0,3)])].slice(0,14);document.getElementById('kbChips').innerHTML=preview.map(k=>`<span class="kb-chip">${esc(k)}</span>`).join('');toast('🧠 AI Guide loaded — '+KB.kwCount+' keywords active','kb',5000);}catch(e){console.error('[KB]',e);const kb={loaded:true,truck:[],shipCount:[],notes:[],specialST:[],truckGlobal:[],stopWords:[],sampleQs:[],fileName:file.name,kwCount:0,qCount:0};applyBuiltinKB(kb);KB=kb;saveKB(KB);updateKBStatus();document.getElementById('IRES-KB').style.display='block';document.getElementById('KB-INFO-BOX').style.display='none';document.getElementById('KB-RESULT-TTL').textContent='🧠 '+KB.kwCount+' keywords activated';document.getElementById('kbKwCount').textContent=KB.kwCount;document.getElementById('kbQCount').textContent='—';const preview=KB.truck.slice(0,5).concat(KB.notes.slice(0,5));document.getElementById('kbChips').innerHTML=preview.map(k=>`<span class="kb-chip">${esc(k)}</span>`).join('');toast('🧠 AI Keywords activated — '+KB.kwCount+' keywords ready','kb',5000);}}
+function showDbg(r,keys,found,sheet){let h='';for(const[f,col]of Object.entries(r))h+=`<span class="chip ${col?'ok':'ms'}">${col?'✓':'✗'} ${CLBL[f].replace('★','')}${col?' → '+col:''}</span>`;document.getElementById('CHIPS').innerHTML=h;document.getElementById('DBGSC').textContent=found+'/'+Object.keys(COLS).length+' · Sheet: '+sheet;document.getElementById('RCOLS').textContent=keys.join(' · ');}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+/* ══ BUSINESS LOGIC ══ */
+function dcInfo(raw){if(!raw)return{l:'Unknown',c:'dc-u'};if(/re.?export/i.test(raw))return{l:'Re-Export',c:'dc-e'};if(/direct/i.test(raw))return{l:'Domestic Direct',c:'dc-d'};if(/dealer|agent/i.test(raw))return{l:'Dealer/Agent',c:'dc-a'};return{l:raw.trim(),c:'dc-u'};}
+function resolveInco(sc,dc){if(/self.?pick|ex.?work/i.test(sc||''))return'EXW';if(/re.?export/i.test(dc||''))return'DAP';if(/direct|dealer|agent/i.test(dc||''))return'DDP';return sc?sc.trim().toUpperCase().slice(0,12):'';}
+function dateScore(t){const m=t.match(/(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})/);if(m){let y=+m[3];if(y<100)y+=2000;return y*10000+(+m[2])*100+(+m[1]);}return 0;}
+function extTime(text){const t=text.replace(/(\d+)\s*(?:g|giờ|gio|h)\s*sáng/gi,'$1h AM').replace(/(\d+)\s*(?:g|giờ|gio|h)\s*(?:chiều|tối)/gi,'$1h PM').replace(/(\d+)\s*(?:g|giờ|gio)\b/gi,'$1h');const rm=/((\d{1,2})[h:\.](\d{0,2})\s*(am|pm)?)\s*[-–~to]+\s*((\d{1,2})[h:\.](\d{0,2})\s*(am|pm)?)/i.exec(t);if(rm)return{s:toM(rm[2],rm[3]||0,rm[4]),e:toM(rm[6],rm[7]||0,rm[8])};const sm=/\b(\d{1,2})[h:\.](\d{0,2})\s*(am|pm)?\b/i.exec(t);if(sm){const s=toM(sm[1],sm[2]||0,sm[3]);return{s,e:s};}return null;}
+function toM(h,m,ap){let hh=+h||0,mm=+m||0;if(ap){if(/pm/i.test(ap)&&hh!==12)hh+=12;if(/am/i.test(ap)&&hh===12)hh=0;}return hh*60+mm;}
+function fmM(m){return Math.floor(m/60)+':'+(m%60<10?'0':'')+m%60;}
+function sessOf(s){if(s<720)return{l:'Morning',c:'s-am',e:'🌅'};if(s<1020)return{l:'Afternoon',c:'s-pm',e:'☀️'};return{l:'Evening',c:'s-ev',e:'🌙'};}
+function extPIC(text){const pts=text.split(/[-–]\s*(?:liên\s*hệ|lh\b|contact|pic)[:\s]*/i);const src=pts.length>1?pts[pts.length-1]:((text.match(/(?:liên\s*hệ|lh\b|contact|pic)[:\s]*(.*)/i)||[])[1]||text);const pr=(src.match(/[\+\d][\d\s\-\(\)\.]{7,15}\d/)||[])[0]||'';const phone=pr.replace(/\D/g,'');let name='';const hm=src.match(/(?:mr\.?|ms\.?|anh\b|chị\b|chi\b|ông\b|bà\b)[\s.]*([\p{L}\s]{1,28})/ui);if(hm)name=hm[0].trim();else{const nm=src.replace(pr,'').match(/[A-ZÀÁẢÃẠĂẮẶẰẲẴÂẤẦẨẪẬĐÈÉẺẼẸÊẾỀỂỄỆÌÍỈĨỊÒÓỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÙÚỦŨỤƯỨỪỬỮỰỲÝỶỸỴ][a-zA-Zàáảãạăắặằẳẵâấầẩẫậđèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵ]+(?:\s+[A-ZÀÁẢÃẠĂẮẶẰẲẴÂẤẦẨẪẬĐÈÉẺẼẸÊẾỀỂỄỆÌÍỈĨỊÒÓỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÙÚỦŨỤƯỨỪỬỮỰỲÝỶỸỴ][a-zA-Zàáảãạăắặằẳẵâấầẩẫậđèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵ]+)*/u);if(nm)name=nm[0].trim();}return(name||phone)?{name,phone}:null;}
+const TRE=/truck\s*ban|truck\s*weight|cấm\s*tải|cam\s*tai|weight\s*limit|tải\s*trọng/i;
+const isTB=s=>TRE.test(s||'');
+function nAddr(s){return String(s).toLowerCase().trim().replace(/\s+/g,' ').replace(/[,\.]/g,'').slice(0,80);}
+function sfq(o){return Object.entries(o).sort((a,b)=>b[1]-a[1]).map(([v,c])=>({v,c}));}
+function topK(o){const e=Object.entries(o).sort((a,b)=>b[1]-a[1]);return e[0]?e[0][0]:'';}
+function isScgRel(code){return /^\d{4}$/.test(code);}
+function buildDB(rows,m){DB={};IDX=[];function gv(row,f){const c=m[f];if(!c)return'';const v=row[c];return v==null?'':String(v).replace(/\u00a0/g,' ').trim();}for(const row of rows){const code=gv(row,'soldToCode')||gv(row,'soldToName');if(!code)continue;if(!DB[code])DB[code]={soldToCode:code,soldToName:gv(row,'soldToName')||code,_dc:{},_pay:{},_inc:{},_sm:new Map(),_so:[],_rc:0};const c=DB[code];c._rc++;const nm=gv(row,'soldToName');if(nm)c.soldToName=nm;const dc=gv(row,'distChan');if(dc)c._dc[dc]=(c._dc[dc]||0)+1;const pt=gv(row,'payTerm');if(pt)c._pay[pt]=(c._pay[pt]||0)+1;const ic=resolveInco(gv(row,'shippingCond'),dc);if(ic)c._inc[ic]=(c._inc[ic]||0)+1;const sc=gv(row,'shipToCode'),sn=gv(row,'shipToName'),sa=gv(row,'shipToAddr');const ak=nAddr(sa||sc||sn);if(ak&&!c._sm.has(ak)){c._sm.set(ak,{code:sc,name:sn,addr:sa,_h:[],_cd:[]});c._so.push(ak);}if(ak&&c._sm.has(ak)){const st=c._sm.get(ak);if(!st.addr&&sa)st.addr=sa;if(!st.name&&sn)st.name=sn;if(!st.code&&sc)st.code=sc;const dh=gv(row,'delivHdr');if(dh&&dh.length>3)st._h.push({d:dateScore(dh),raw:dh});const dc2=gv(row,'delivCond');if(dc2&&dc2.length>1)st._cd.push(dc2);}}for(const c of Object.values(DB)){const dci=dcInfo(topK(c._dc));c.dcL=dci.l;c.dcC=dci.c;c.isScgRel=isScgRel(c.soldToCode);c.payTerms=sfq(c._pay);c.incos=sfq(c._inc);c.shiptos=c._so.map(k=>{const st=c._sm.get(k);const hdrs=[...st._h].sort((a,b)=>b.d-a.d);let dt={sess:{l:'Business Hours',c:'s-biz',e:'🏢'},tStr:''},pic=null;if(hdrs.length){for(const h of hdrs){const t=extTime(h.raw);if(t){dt={sess:sessOf(t.s),tStr:t.s===t.e?fmM(t.s):fmM(t.s)+' – '+fmM(t.e)};break;}}for(const h of hdrs){const p=extPIC(h.raw);if(p&&(p.name||p.phone)){pic=p;break;}}}const seen=new Set(),specs=[];for(const cd of st._cd){const k2=cd.trim();const key=k2.toLowerCase().slice(0,60);if(!seen.has(key)){seen.add(key);specs.push(k2);}}const specsEN=[];const seenEN=new Set();for(const s of specs){const en=trCond(s);if(!seenEN.has(en)){seenEN.add(en);specsEN.push(en);}}const hasTruck=specsEN.some(isTB);return{code:st.code,name:st.name,addr:st.addr,dt,pic,specs:specsEN,hasTruck,truckCds:specsEN.filter(isTB)};});delete c._dc;delete c._pay;delete c._inc;delete c._sm;delete c._so;}buildIDX();}
+
+/* ══ RENDER ══ */
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function hl(t,q){const i=t.toLowerCase().indexOf(q.toLowerCase());if(i<0)return esc(t);return esc(t.slice(0,i))+'<b style="color:#1e3a6e">'+esc(t.slice(i,i+q.length))+'</b>'+esc(t.slice(i+q.length));}
+function renderTruck(){const list=document.getElementById('TKLIST'),stats=document.getElementById('TKST');if(!Object.keys(DB).length){stats.innerHTML='';list.innerHTML='<div class="tke"><div class="tkei">📂</div><div class="tket">No data loaded</div><div class="tkes">Import an Excel file first.</div></div>';return;}const custs=Object.values(DB).filter(c=>c.shiptos.some(s=>s.hasTruck));if(!custs.length){stats.innerHTML='';list.innerHTML='<div class="tke"><div class="tkei">✅</div><div class="tket">No truck restrictions found</div><div class="tkes">No ship-to locations have truck ban or weight restrictions.</div></div>';return;}const tot=custs.reduce((a,c)=>a+c.shiptos.filter(s=>s.hasTruck).length,0);stats.innerHTML=`<div class="tks"><div class="tksv">${custs.length}</div><div class="tksl">Customers</div></div><div class="tks"><div class="tksv">${tot}</div><div class="tksl">Locations</div></div><div class="tks"><div class="tksv" style="color:#b91c1c;font-size:22px">⚠</div><div class="tksl">Double-check</div></div>`;list.innerHTML=custs.map(c=>{const aff=c.shiptos.filter(s=>s.hasTruck);const stH=aff.map((s,i)=>`<div class="tbst"><div class="tbstl"><div class="tbsn">${i+1}</div><div>${s.code?`<div class="tbsco">${esc(s.code)}</div>`:''}<div class="tbsnm">${esc(s.name||'—')}</div>${s.addr?`<div class="tbsad">📍 ${esc(s.addr)}</div>`:''}</div></div><div class="tbca"><div class="tbcl-hd"><span class="truck-badge">🚛 Truck Restriction</span></div>${s.truckCds.map(t=>`<div class="tbcp"><span style="font-size:11px;flex-shrink:0;color:#b45309">⚠</span><span class="tbct">${esc(t)}</span></div>`).join('')}</div></div>`).join('');return`<div class="tbcard"><div class="tbch"><div class="tbci">🏢</div><div><div class="tbcn">${esc(c.soldToName)}</div><div class="tbcm"><span class="tbcc">${esc(c.soldToCode)}</span>${c.isScgRel?'<span class="scg-badge">★ SCG Relative</span>':''}<span class="tbcnt">🚛 ${aff.length} location${aff.length>1?'s':''}</span><span class="dctag ${c.dcC}">${esc(c.dcL)}</span></div></div></div><div class="tbsl">${stH}</div></div>`;}).join('');}
+function buildST(s,idx){const dt=s.dt;const tLbl=dt.tStr?`${dt.sess.l} (${dt.tStr})`:dt.sess.l;const tCell=`<div class="stcol"><div class="clbl">⏰ Delivery Time</div><div class="sess ${dt.sess.c}">${dt.sess.e} ${esc(tLbl)}</div></div>`;let cCell=`<div class="stcol"><div class="clbl">👤 Contact Person</div>`;if(s.pic&&(s.pic.name||s.pic.phone)){if(s.pic.name)cCell+=`<div class="pname">${esc(s.pic.name)}</div>`;if(s.pic.phone)cCell+=`<div class="pphone">${esc(s.pic.phone)}</div>`;}else cCell+=`<span class="noinfo">No contact on file</span>`;cCell+=`</div>`;let condBlk='';if(s.specs&&s.specs.length){const tr=s.specs.filter(isTB),ot=s.specs.filter(r=>!isTB(r));let inn='';if(tr.length)inn+=`<div class="truck-section"><div class="truck-section-hd"><span class="truck-badge">🚛 Truck Restriction</span></div>${tr.map(r=>`<div class="truck-item"><span style="font-size:11px;color:#b45309;flex-shrink:0">⚠</span><span class="truck-item-txt">${esc(r)}</span></div>`).join('')}</div>`;if(ot.length)inn+=`<div class="spec-section"><div class="spec-section-hd"><span class="spec-badge">📋 Delivery Conditions</span></div>${ot.map(r=>`<div class="spec-item"><span style="font-size:11px;color:#1e3a6e;flex-shrink:0">•</span><span class="spec-item-txt">${esc(r)}</span></div>`).join('')}</div>`;condBlk=`<div class="condblk">${inn}</div>`;}return`<div class="stb"><div class="stloc"><div class="stn">${idx}</div><div>${s.code?`<div class="stco">${esc(s.code)}</div>`:''}<div class="stnm">${esc(s.name||'—')}</div>${s.addr?`<div class="stad">${esc(s.addr)}</div>`:''}</div></div><div class="st2c">${tCell}${cCell}</div>${condBlk}</div>`;}
+function renderCust(code,target){const c=DB[code];if(!c)return;const isEXW=c.incos[0]?.v==='EXW';const tot=c.payTerms.reduce((a,b)=>a+b.c,0);const payH=c.payTerms.length?c.payTerms.map((it,i)=>{let cls=c.payTerms.length===1?'pt-o':i===0?'pt-p':it.c/tot>0.15?'pt-s':'pt-r';return`<div class="prow"><span class="pcode">${esc(it.v)}</span><span class="ptag ${cls}">${c.payTerms.length===1?'Only':i===0?'Primary':'Secondary'}</span></div>`;}).join(''):`<p style="font-size:12.5px;color:var(--gray2);font-style:italic">N/A</p>`;const incoH=c.incos.length?c.incos.map((it,i)=>`<div class="irow"><span class="iterm">${esc(it.v)}</span><span class="itag ${c.incos.length===1?'it-o':i===0?'it-p':'it-s'}">${c.incos.length===1?'Only':i===0?'Primary':'Secondary'}</span></div>`).join(''):`<p style="font-size:12.5px;color:var(--gray2);font-style:italic">N/A</p>`;const stH=isEXW?'':c.shiptos.map((s,i)=>buildST(s,i+1)).join('');const scgBadge=c.isScgRel?'<span class="scg-badge">★ SCG Relative</span>':'';document.getElementById(target).innerHTML=`<div class="cw"><div class="crow r3"><div class="card c-cu"><div class="ch"><div class="cico">🏢</div><div class="ct">Customer Information</div></div><div class="cb"><div class="cname">${esc(c.soldToName)}</div><div class="cmeta"><span class="codetag">${esc(c.soldToCode)}</span><span class="dctag ${c.dcC}">${esc(c.dcL)}</span>${scgBadge}</div></div></div><div class="card c-py"><div class="ch"><div class="cico">💳</div><div class="ct">Payment Term</div></div><div class="cb"><div class="plist">${payH}</div></div></div><div class="card c-ic"><div class="ch"><div class="cico">🌐</div><div class="ct">Incoterm</div></div><div class="cb"><div class="ilist">${incoH}</div></div></div></div>${!isEXW&&stH?`<div class="crow r1"><div class="card c-st"><div class="ch"><div class="cico">📍</div><div class="ct">Ship-to Locations <span style="color:#15803d;font-size:10px;font-weight:600;margin-left:5px">${c.shiptos.length} location${c.shiptos.length>1?'s':''}</span></div></div><div class="cb" style="padding:11px 12px;">${stH}</div></div></div>`:''}</div>`;if(target==='RA')document.getElementById(target).scrollIntoView({behavior:'smooth',block:'nearest'});}
+function renderMulti(ms,target,ctx){const items=ms.map(e=>{const fn=ctx==='ai'?`aiSel('${esc(e.code)}')`:`selC('${esc(e.code)}')`;return`<div class="mi" onclick="${fn}"><div style="width:7px;height:7px;border-radius:50%;background:#1e3a6e;flex-shrink:0"></div><div><div style="font-size:11px;font-family:'Inter',monospace;font-weight:700;color:#1e3a6e">${esc(e.code)}</div><div style="font-size:12.5px;font-weight:600">${esc(e.name)}</div></div><div class="mia">›</div></div>`;}).join('');document.getElementById(target).innerHTML=`<div class="mbox"><div class="mhd"><div class="mic">⌕</div><div><div class="mt">${ms.length} customers found</div><div class="ms">Select one to view full profile</div></div></div><div class="ml">${items}</div></div>`;}
+
+/* ══ SEARCH ══ */
+function onSI(){const q=document.getElementById('SI').value.trim();document.getElementById('SC').style.display=q?'flex':'none';if(!q){hideDrop();document.getElementById('RA').innerHTML='';return;}if(!IDX.length){hideDrop();return;}const m=findM(q);m.length?showDrop(m,q):hideDrop();}
+function onSK(e){if(e.key==='Enter'){hideDrop();doSearch(document.getElementById('SI').value.trim());}if(e.key==='Escape')hideDrop();}
+function clrS(){document.getElementById('SI').value='';document.getElementById('SC').style.display='none';document.getElementById('RA').innerHTML='';hideDrop();}
+function findM(q){const ql=q.toLowerCase();return IDX.filter(e=>e.lc===ql||e.ln.includes(ql)||e.lc.includes(ql)).slice(0,12);}
+function showDrop(m,q){const dd=document.getElementById('DROP');dd.innerHTML=m.map(e=>`<div class="ditem" onclick="selC('${esc(e.code)}')"><span class="dcode">${esc(e.code)}</span><span class="dname">${hl(e.name,q)}</span></div>`).join('');dd.style.display='block';}
+function hideDrop(){document.getElementById('DROP').style.display='none';}
+function selC(code){hideDrop();document.getElementById('SI').value=code;document.getElementById('SC').style.display='flex';doSearch(code);}
+function doSearch(q){if(!q)return;if(!IDX.length){document.getElementById('RA').innerHTML='<div class="empty-s"><div class="ei">📂</div><div class="et">No data loaded</div><div class="es">Import an Excel file to get started</div></div>';return;}const m=findM(q);if(!m.length){document.getElementById('RA').innerHTML=`<div class="empty-s"><div class="ei">⌕</div><div class="et">No results for "${esc(q)}"</div><div class="es">Try customer name or sold-to code</div></div>`;return;}m.length===1?renderCust(m[0].code,'RA'):renderMulti(m,'RA','s');}
+document.addEventListener('click',e=>{if(!e.target.closest('.sw'))hideDrop();});
+
+/* ══════════════════════════════════════════════════════════════════
+   AI ASSISTANT v9 — KEYWORD-FIRST APPROACH
+   
+   CORE CHANGE: Instead of regex on question patterns,
+   we use POSITIVE MATCHING:
+   1. N-gram scan to find customer name in ANY position in query
+   2. Keyword scan for INTENT (truck, dp, coa, notes, ship-to, etc.)
+   3. Route based on (customer found? yes/no) + (intent keywords)
+   
+   This handles ANY question form — no more fixed patterns.
+══════════════════════════════════════════════════════════════════ */
+
+/* ══ KEYWORD MAP ══
+   Simple lowercase-includes matching.
+   Keys = intent name, Values = list of trigger keywords.
+   Add any synonym here to extend coverage without code changes.
+*/
+const KW = {
+  TRUCK: [
+    'truck ban','truck restrict','truck weight','cấm tải','cam tai','cấm xe',
+    'truck limit','weight limit','weight restrict','hạn chế xe','xe tải vào',
+    'no truck','truck access','restricted truck','truck-ban','vehicle restrict',
+    'giờ cấm','cấm giờ','forbidden truck','truck forbidden','truck not allowed',
+    'tải trọng','max weight','maximum weight'
+  ],
+  SHIP_TO: [
+    'ship to','ship-to','bao nhiêu ship','how many ship','số ship','số lượng ship',
+    'địa chỉ giao','điểm giao','delivery point','delivery location','delivery address',
+    'nhận hàng ở đâu','giao ở đâu','giao đến đâu','where deliver','where ship',
+    'how many location','số lượng địa chỉ','all location','list location',
+    'warehouse','kho nhận','receiving point'
+  ],
+  DP: [
+    'dp','dp giấy','giấy dp','delivery paper','paper dp','dp paper',
+    'dp required','cần dp','yêu cầu dp','dp giấy không','need dp',
+    'giấy giao hàng','document delivery','delivery document'
+  ],
+  COA: [
+    'coa','certificate of analysis','certificate','chứng nhận chất lượng',
+    'quality cert','coa document','mang coa','bring coa','coa required'
+  ],
+  PIC: [
+    'pic','liên hệ pic','contact pic','liên hệ trước','báo trước',
+    'notify before','advance contact','advance notice','call before',
+    'gọi trước khi giao','notify warehouse','thông báo trước'
+  ],
+  DRIVER: [
+    'tài xế','driver','dress code','quần dài','giày bao gót','phản quang',
+    'safety wear','reflective vest','protective gear','trang phục tài xế',
+    'driver requirement','driver rule','long pants'
+  ],
+  STOP_DIST: [
+    '500m','dừng xa','stop far','park outside','để xe ngoài đường',
+    'forklift','xe nâng','stop 500','500 meter','park main road'
+  ],
+  TRUCK_SIZE: [
+    '15mt','15 mt','10mt','10 mt','tấn','truck size','loại xe','cỡ xe',
+    'max truck','maximum truck','truck type','tonnage','vehicle size'
+  ],
+  NOTES: [
+    'lưu ý','note','condition','điều kiện','yêu cầu','require','cần gì',
+    'special','đặc biệt','instruction','hướng dẫn','quy định',
+    'có gì không','anything','what need','what require','what to know',
+    'delivery condition','delivery note','delivery requirement',
+    'delivery instruction','có yêu cầu','có lưu ý','need to know',
+    'giao cần gì','giao hàng cần','before delivery'
+  ],
+};
+
+/* Normalize string: remove diacritics, lowercase */
+function nd(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+}
+
+/* Detect intent keywords in query — returns array of matched intents */
+function detectIntents(q){
+  const ql=q.toLowerCase();
+  const qld=nd(ql);
+  const found=[];
+  for(const[intent,keywords]of Object.entries(KW)){
+    for(const kw of keywords){
+      const kwl=kw.toLowerCase();
+      const kwld=nd(kwl);
+      if(ql.includes(kwl)||qld.includes(kwld)){
+        found.push(intent);
+        break;
+      }
+    }
+  }
+  return found;
+}
+
+/* Fuzzy customer search — diacritics insensitive */
+function fuzzySearch(q){
+  if(!q||q.length<2)return[];
+  const ql=q.toLowerCase().trim();
+  const qld=nd(ql);
+  const words=qld.split(/\s+/).filter(w=>w.length>=2);
+  return IDX.filter(e=>{
+    const lcD=nd(e.lc),lnD=nd(e.ln);
+    if(e.lc===ql||e.ln.toLowerCase()===ql)return true;
+    if(lcD===qld||lnD===qld)return true;
+    if(lcD.includes(qld)||lnD.includes(qld))return true;
+    if(words.length>=1&&words.every(w=>lnD.includes(w)||lcD.includes(w)))return true;
+    return false;
+  }).slice(0,8);
+}
+
+/* ★ CORE: N-gram customer extraction
+   Scans ALL word combinations in the query to find customer.
+   This handles any word order / sentence structure.
+   Returns {match, words_used} or {match:null}
+*/
+function extractCustomer(q){
+  const clean=q.replace(/[?!,\.]/g,' ').replace(/\s+/g,' ').trim();
+  const words=clean.split(' ').filter(w=>w.length>0);
+  const n=words.length;
+  
+  let bestMatch=null;
+  let bestScore=0;
+  let bestSpan=null;
+  
+  // Try n-grams from longest (4 words) down to shortest (1 word)
+  for(let size=Math.min(n,5);size>=1;size--){
+    for(let start=0;start<=n-size;start++){
+      const ngram=words.slice(start,start+size).join(' ');
+      if(ngram.length<2)continue;
+      
+      const matches=fuzzySearch(ngram);
+      if(matches.length>0){
+        // Score: prefer longer n-grams
+        const score=size*10+(matches[0].lc===ngram.toLowerCase()?5:0);
+        if(score>bestScore){
+          bestScore=score;
+          bestMatch=matches;
+          bestSpan={start,end:start+size,words:words.slice(start,start+size)};
+        }
+        // Once we find a match at current size, check all positions then move on
+      }
+    }
+    // If we found something at this size, stop looking at smaller sizes
+    // (prevents single common words from matching)
+    if(bestMatch&&bestScore>=size*10)break;
+  }
+  
+  return{match:bestMatch,span:bestSpan};
+}
+
+/* ══ CONTEXT MEMORY ══ */
+let lastCtxCode=null;
+
+function setCtx(code){
+  lastCtxCode=code;
+  const c=DB[code];
+  if(c){
+    const bar=document.getElementById('ctxBar');
+    bar.style.display='flex';
+    document.getElementById('ctxLabel').textContent=`${c.soldToName} (${c.soldToCode})`;
+  }
+}
+function clearCtx(){
+  lastCtxCode=null;
+  document.getElementById('ctxBar').style.display='none';
+  document.getElementById('ctxLabel').textContent='—';
+}
+
+/* ══ GLOBAL SEARCH — search across all customers for a condition ══ */
+function globalSearch(intents){
+  const results=[];
+  for(const c of Object.values(DB)){
+    let matchingSTs=[];
+    
+    if(intents.includes('TRUCK'))matchingSTs=c.shiptos.filter(s=>s.hasTruck);
+    else if(intents.includes('DP'))matchingSTs=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('delivery paper')||sp.toLowerCase().includes('dp')));
+    else if(intents.includes('COA'))matchingSTs=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('coa')||sp.toLowerCase().includes('certificate')));
+    else if(intents.includes('PIC'))matchingSTs=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('pic')||sp.toLowerCase().includes('contact')));
+    else if(intents.includes('DRIVER'))matchingSTs=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('driver')||sp.toLowerCase().includes('dress')));
+    else if(intents.includes('STOP_DIST'))matchingSTs=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('500m')||sp.toLowerCase().includes('forklift')||sp.toLowerCase().includes('park')));
+    else if(intents.includes('TRUCK_SIZE'))matchingSTs=c.shiptos.filter(s=>s.specs.some(sp=>/\d+mt|\btruck\s*size|truck\s*limit/i.test(sp)));
+    else if(intents.includes('NOTES')||intents.includes('SHIP_TO'))matchingSTs=c.shiptos.filter(s=>s.specs&&s.specs.length>0);
+    
+    if(matchingSTs.length)results.push({c,sts:matchingSTs});
+  }
+  return results;
+}
+
+/* ══ ANSWER BUILDERS ══ */
+
+function answerTruck(c){
+  const truckSTs=c.shiptos.filter(s=>s.hasTruck);
+  if(!truckSTs.length)return{txt:`✅ <strong>${esc(c.soldToName)}</strong><br><br>No truck restrictions — delivery can proceed normally.`,act:()=>renderCust(c.soldToCode,'RP')};
+  let txt=`⚠️ <strong>${esc(c.soldToName)}</strong> (${esc(c.soldToCode)})<br>Truck restrictions at <strong>${truckSTs.length} location${truckSTs.length>1?'s':''}:</strong><br><br>`;
+  truckSTs.forEach((s,i)=>{txt+=`<strong>${i+1}. ${esc(s.name||s.code||'—')}</strong>`;if(s.addr)txt+=`<br><span style="font-size:11px;color:var(--gray)">📍 ${esc(s.addr)}</span>`;txt+='<br>';s.truckCds.forEach(t=>txt+=`<span style="color:#7c2d12;font-size:11.5px;font-weight:600">🚛 ${esc(t)}</span><br>`);txt+='<br>';});
+  txt+=`<small style="color:var(--gray2)">Details on the right →</small>`;
+  return{txt,act:()=>renderTruckForCust(c)};
+}
+
+function answerCondition(c,intents){
+  // Filter ship-tos with relevant conditions
+  let stWithCond;
+  if(intents.includes('DP'))stWithCond=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('delivery paper')||sp.toLowerCase().includes('dp')));
+  else if(intents.includes('COA'))stWithCond=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('coa')||sp.toLowerCase().includes('certificate')));
+  else if(intents.includes('PIC'))stWithCond=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('pic')||sp.toLowerCase().includes('contact')));
+  else if(intents.includes('DRIVER'))stWithCond=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('driver')||sp.toLowerCase().includes('dress')));
+  else if(intents.includes('STOP_DIST'))stWithCond=c.shiptos.filter(s=>s.specs.some(sp=>sp.toLowerCase().includes('500m')||sp.toLowerCase().includes('forklift')));
+  else if(intents.includes('TRUCK_SIZE'))stWithCond=c.shiptos.filter(s=>s.specs.some(sp=>/\d+mt|truck\s*size/i.test(sp)));
+  else stWithCond=c.shiptos.filter(s=>s.specs&&s.specs.length>0);
+  
+  if(!stWithCond.length){
+    const intentLabel={'DP':'Delivery Paper (DP)','COA':'COA document','PIC':'PIC contact','DRIVER':'driver requirements','STOP_DIST':'stop distance (500m)','TRUCK_SIZE':'truck size limit','NOTES':'special conditions'}[intents.find(i=>['DP','COA','PIC','DRIVER','STOP_DIST','TRUCK_SIZE'].includes(i))]||'special conditions';
+    return{txt:`✅ <strong>${esc(c.soldToName)}</strong><br><br>No ${intentLabel} requirements at any ship-to location.`,act:()=>renderCust(c.soldToCode,'RP')};
+  }
+  let txt=`📋 <strong>${esc(c.soldToName)}</strong> — Delivery conditions:<br><br>`;
+  stWithCond.forEach((s,i)=>{txt+=`<strong>${i+1}. ${esc(s.name||s.code||'—')}</strong><br>`;s.specs.filter(isTB).forEach(co=>txt+=`<span style="color:#7c2d12;font-size:11.5px;font-weight:600">🚛 ${esc(co)}</span><br>`);s.specs.filter(r=>!isTB(r)).forEach(co=>txt+=`<span style="color:#1a2b4a;font-size:11.5px">• ${esc(co)}</span><br>`);txt+='<br>';});
+  txt+=`<small style="color:var(--gray2)">Full details on the right →</small>`;
+  return{txt,act:()=>renderCust(c.soldToCode,'RP')};
+}
+
+function answerShipTo(c){
+  const n=c.shiptos.length;
+  let txt=`📍 <strong>${esc(c.soldToName)}</strong> has <strong>${n} ship-to location${n>1?'s':''}:</strong><br><br>`;
+  c.shiptos.forEach((s,i)=>{txt+=`<strong>${i+1}. ${esc(s.name||s.code||'—')}</strong>`;if(s.addr)txt+=`<br><span style="font-size:11px;color:var(--gray)">📍 ${esc(s.addr)}</span>`;if(s.hasTruck)txt+=` &nbsp;<span style="color:#b45309;font-size:11px;font-weight:600">🚛</span>`;txt+='<br><br>';});
+  txt+=`<small style="color:var(--gray2)">Full profile on the right →</small>`;
+  return{txt,act:()=>renderCust(c.soldToCode,'RP')};
+}
+
+function globalLabel(intents){
+  if(intents.includes('TRUCK'))return'Truck Ban';
+  if(intents.includes('DP'))return'Delivery Paper (DP) required';
+  if(intents.includes('COA'))return'COA document required';
+  if(intents.includes('PIC'))return'Contact PIC before delivery';
+  if(intents.includes('DRIVER'))return'Driver dress code / requirements';
+  if(intents.includes('STOP_DIST'))return'Stop 500m from warehouse';
+  if(intents.includes('TRUCK_SIZE'))return'Truck size restriction';
+  if(intents.includes('NOTES')||intents.includes('SHIP_TO'))return'Special delivery conditions';
+  return'Special conditions';
+}
+
+/* ══ MAIN AI PROCESSOR ══ */
+function aiProc(q){
+  if(!Object.keys(DB).length)return{txt:'No data loaded. Please import an Excel file first.',act:null};
+  
+  const ql=q.toLowerCase().trim();
+  
+  /* ── Step 1: Detect intent keywords ── */
+  const intents=detectIntents(q);
+  
+  /* ── Step 2: Extract customer via n-gram scanning ── */
+  const{match:custMatches,span}=extractCustomer(q);
+  let custCode=null;
+  
+  if(custMatches&&custMatches.length>0){
+    if(custMatches.length===1){
+      custCode=custMatches[0].code;
+    } else {
+      // Multiple matches — present choice
+      return{
+        txt:`Found <strong>${custMatches.length} customers</strong> matching your query. Select one →`,
+        act:()=>renderMulti(custMatches,'RP','ai')
+      };
+    }
+  }
+  
+  /* ── Step 3: Use context if no customer found ── */
+  if(!custCode&&lastCtxCode&&DB[lastCtxCode]&&intents.length>0){
+    custCode=lastCtxCode;
+  }
+  
+  /* ── Step 4: Route based on (customer, intents) ── */
+  
+  // No customer, no intents → fallback
+  if(!custCode&&intents.length===0){
+    return{
+      txt:`I couldn't find a customer or recognize a keyword in "<strong>${esc(q)}</strong>".<br><br><small style="color:var(--gray2)">Try: customer name, "truck ban", "DP", "COA", "ship to", "notes", or "conditions"</small>`,
+      act:null
+    };
+  }
+  
+  // No customer → global search by intent
+  if(!custCode&&intents.length>0){
+    const results=globalSearch(intents);
+    const label=globalLabel(intents);
+    if(!results.length)return{txt:`✅ No customers found with: <strong>${esc(label)}</strong>`,act:clrRP};
+    const tot=results.reduce((a,r)=>a+r.sts.length,0);
+    const icon=intents.includes('TRUCK')?'🚛':'📋';
+    return{
+      txt:`${icon} Found <strong>${results.length} customer${results.length>1?'s':''}</strong> with <strong>${esc(label)}</strong> at <strong>${tot} location${tot>1?'s':''}.</strong> Full list on the right →`,
+      act:()=>renderGlobalResults(results,label,intents)
+    };
+  }
+  
+  // Has customer
+  const c=DB[custCode];
+  if(!c)return{txt:`No customer found matching your query.`,act:null};
+  
+  // Update context
+  setCtx(custCode);
+  
+  // Customer + no intent → show profile
+  if(intents.length===0){
+    return{txt:custSum(c),act:()=>renderCust(c.soldToCode,'RP')};
+  }
+  
+  // Customer + TRUCK intent
+  if(intents.includes('TRUCK')){
+    return answerTruck(c);
+  }
+  
+  // Customer + SHIP_TO intent
+  if(intents.includes('SHIP_TO')&&!intents.some(i=>['DP','COA','PIC','DRIVER','STOP_DIST','TRUCK_SIZE','NOTES'].includes(i))){
+    return answerShipTo(c);
+  }
+  
+  // Customer + condition intent (DP, COA, PIC, DRIVER, STOP_DIST, TRUCK_SIZE, NOTES, SHIP_TO with conditions)
+  return answerCondition(c,intents);
+}
+
+/* ══ GLOBAL RESULTS RENDERER ══ */
+function renderGlobalResults(results,label,intents){
+  const tot=results.reduce((a,r)=>a+r.sts.length,0);
+  const isTruck=intents.includes('TRUCK');
+  let h=`<div style="margin-bottom:16px"><div style="font-size:15px;font-weight:700;margin-bottom:3px">${isTruck?'🚛':'📋'} ${esc(label)}</div><div style="font-size:12px;color:var(--gray)">${results.length} customers · ${tot} ship-to locations</div></div>`;
+  h+=results.map(({c,sts})=>{
+    const stH=sts.map((s,i)=>{
+      const conds=isTruck?s.truckCds:s.specs.filter(sp=>!isTB(sp));
+      return`<div class="tbst" style="margin-bottom:6px"><div class="tbstl"><div class="tbsn">${i+1}</div><div>${s.code?`<div class="tbsco">${esc(s.code)}</div>`:''}<div class="tbsnm">${esc(s.name||'—')}</div>${s.addr?`<div class="tbsad">📍 ${esc(s.addr)}</div>`:''}</div></div><div class="tbca" style="padding:7px 12px;">${conds.length?conds.map(c2=>`<div style="font-size:11.5px;color:${isTruck?'#7c2d12':'#1a2b4a'};margin-bottom:3px">${isTruck?'🚛 ':' • '}${esc(c2)}</div>`).join(''):'<span style="color:var(--gray2);font-size:11px;font-style:italic">See full profile</span>'}</div></div>`;
+    }).join('');
+    return`<div class="tbcard" style="margin-bottom:11px"><div class="tbch"><div class="tbci">🏢</div><div><div class="tbcn">${esc(c.soldToName)}</div><div class="tbcm"><span class="tbcc">${esc(c.soldToCode)}</span>${c.isScgRel?'<span class="scg-badge">★ SCG Relative</span>':''}<span class="tbcnt">${isTruck?'🚛':'📋'} ${sts.length}</span><span class="dctag ${c.dcC}">${esc(c.dcL)}</span></div></div></div><div class="tbsl">${stH}</div></div>`;
+  }).join('');
+  document.getElementById('RP').innerHTML=h;
+}
+
+function renderTruckForCust(c){const aff=c.shiptos.filter(s=>s.hasTruck);let h=`<div style="margin-bottom:16px"><div style="font-size:15px;font-weight:700;margin-bottom:3px">🚛 Truck Restrictions — ${esc(c.soldToName)}</div><div style="font-size:12px;color:var(--gray)">${esc(c.soldToCode)} · ${aff.length} restricted location${aff.length>1?'s':''}</div></div>`;h+=aff.map((s,i)=>`<div class="tbst" style="margin-bottom:9px"><div class="tbstl"><div class="tbsn">${i+1}</div><div>${s.code?`<div class="tbsco">${esc(s.code)}</div>`:''}<div class="tbsnm">${esc(s.name||'—')}</div>${s.addr?`<div class="tbsad">📍 ${esc(s.addr)}</div>`:''}</div></div><div class="tbca"><div class="tbcl-hd"><span class="truck-badge">🚛 Truck Restriction</span></div>${s.truckCds.map(t=>`<div class="tbcp"><span style="font-size:11px;flex-shrink:0;color:#b45309">⚠</span><span class="tbct">${esc(t)}</span></div>`).join('')}</div></div>`).join('');h+=`<div style="margin-top:12px;padding-top:12px;border-top:1.5px solid var(--bdr);font-size:12px;color:var(--gray);cursor:pointer" onclick="renderCust('${esc(c.soldToCode)}','RP')">← View full customer profile</div>`;document.getElementById('RP').innerHTML=h;}
+
+function custSum(c){const tc=c.shiptos.filter(s=>s.hasTruck).length;let txt=`<strong>${esc(c.soldToName)}</strong> <code style="font-size:10px;background:rgba(30,58,110,.08);padding:1px 5px;border-radius:4px;color:#1e3a6e">${esc(c.soldToCode)}</code>`;if(c.isScgRel)txt+=` <span style="font-size:10.5px;color:#b45309;font-weight:700">★ SCG Relative</span>`;txt+=`<br>${esc(c.dcL)} · 💳 ${c.payTerms[0]?.v||'N/A'} · 🌐 ${c.incos[0]?.v||'N/A'}<br>📍 ${c.shiptos.length} ship-to location${c.shiptos.length>1?'s':''}`;if(tc>0)txt+=` · <span style="color:#7c2d12;font-weight:700">⚠ ${tc} truck restriction${tc>1?'s':''}</span>`;txt+=`<br><small style="color:var(--gray2)">Full profile on the right →</small>`;return txt;}
+
+function clrRP(){document.getElementById('RP').innerHTML='<div class="rpe"><div class="rpei">🔍</div><div class="rpet">Results appear here</div><div class="rpes">Type a customer name or code in the chat panel.</div></div>';}
+
+/* ══ CHAT ══ */
+function sendChat(){const inp=document.getElementById('CINP'),q=inp.value.trim();if(!q)return;inp.value='';addMsg('u',q);showTyp();setTimeout(()=>{rmTyp();const{txt,act}=aiProc(q);addMsg('b',txt,true);if(act)act();},480+Math.random()*180);}
+function addMsg(role,content,html=false){const d=document.getElementById('MSGS'),w=document.createElement('div');w.className='msg '+role;const av=document.createElement('div');av.className='mav';if(role==='b')av.innerHTML=botAv();else av.textContent='👤';const bub=document.createElement('div');bub.className='mbub';html?bub.innerHTML=content:bub.textContent=content;w.appendChild(av);w.appendChild(bub);d.appendChild(w);d.scrollTop=d.scrollHeight;}
+function showTyp(){const d=document.getElementById('MSGS'),w=document.createElement('div');w.className='msg b';w.id='TYP';const av=document.createElement('div');av.className='mav';av.innerHTML=botAv();const dots=document.createElement('div');dots.className='typing';dots.innerHTML='<div class="td"></div><div class="td"></div><div class="td"></div>';w.appendChild(av);w.appendChild(dots);d.appendChild(w);d.scrollTop=d.scrollHeight;}
+function rmTyp(){const t=document.getElementById('TYP');if(t)t.remove();}
+function aiSel(code){setCtx(code);renderCust(code,'RP');const c=DB[code];if(c)addMsg('b',`Showing profile for <strong>${esc(c.soldToName)}</strong> on the right →`,true);}
+
+/* ══ LOGO ══ */
+const LK='lica_logo_v1';
+function uploadLogo(f){if(!f)return;const r=new FileReader();r.onload=e=>{try{localStorage.setItem(LK,e.target.result);}catch{}applyLogo(e.target.result);toast('Logo saved!','ok');};r.readAsDataURL(f);}
+function applyLogo(d){const img=document.getElementById('logoImg'),init=document.getElementById('logoInit');if(img){img.src=d;img.classList.add('show');}if(init)init.style.display='none';const ai=document.getElementById('AIAVimg'),aii=document.getElementById('AIAVini');if(ai){ai.src=d;ai.classList.add('show');}if(aii)aii.style.display='none';}
+function botAv(){try{const d=localStorage.getItem(LK);if(d)return`<img src="${d}" style="width:100%;height:100%;object-fit:cover;border-radius:5px;">`;}catch{}return'<span style="font-size:11px;font-weight:700;color:#fff">L</span>';}
+
+/* ══ INIT ══ */
+(function(){prune();try{const d=localStorage.getItem(LK);if(d)applyLogo(d);}catch{}loadKB();if(loadS()){navUpd();const meta=getMeta();let msg='Session restored — '+Object.keys(DB).length.toLocaleString()+' customers';if(meta){const d=new Date(meta.at);msg+=' ('+d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})+')';}setTimeout(()=>toast(msg,'ok',4000),600);}})();
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
